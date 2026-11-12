@@ -10,7 +10,7 @@ elio_assessment:
       database: "{{ env_var('SNOWFLAKE_DATABASE', 'ELIO_ASSESSMENT') }}"
       warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'ELIO_ASSESSMENT_WH') }}"
       schema: "{{ env_var('DBT_SCHEMA', 'DEV') }}"
-      threads: 4
+      threads: 1  # Serial interactive OAuth; avoids simultaneous Google login flows.
       client_session_keep_alive: false
       query_tag: elio_assessment_dbt
     ci:

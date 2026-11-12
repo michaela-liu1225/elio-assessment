@@ -19,6 +19,7 @@ def connect(*, database=True):
               'user': os.environ['SNOWFLAKE_USER'],
               'role': os.environ['SNOWFLAKE_ROLE'],
               'login_timeout': 120,
+              'client_store_temporary_credential': True,
               'session_parameters': {'QUERY_TAG': 'elio_assessment'}}
     if os.environ.get('SNOWFLAKE_PRIVATE_KEY_PATH'):
         params['private_key_file'] = os.environ['SNOWFLAKE_PRIVATE_KEY_PATH']
