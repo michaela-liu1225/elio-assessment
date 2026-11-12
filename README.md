@@ -127,7 +127,7 @@ scripts/                   SQL execution and scenario/plot calculations
 profiles.yml.example        environment-based configuration without secrets
 ```
 
-History separates setup, ingestion, models, analysis and validation. The feature branch is `codex/olist-assessment`; the PR targets `main`. The original confidential assessment PDF is not committed. Raw files, environments, credentials, profiles, compiled dbt artifacts and logs are ignored.
+History separates setup, ingestion, models, analysis and validation. The feature branch is `codex/olist-assessment`; [implementation PR #1](https://github.com/michaela-liu1225/elio-assessment/pull/1) targets `main`. The original confidential assessment PDF is not committed. Raw files, environments, credentials, profiles, compiled dbt artifacts and logs are ignored.
 
 ## Scope and next steps
 
