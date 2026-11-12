@@ -70,7 +70,8 @@ Top three production checks:
 
 ## B4. Client memo (under 200 words)
 
-> To: CFO / COO  
+> To: CFO / COO
+>
 > Subject: Test repeat-purchase growth before funding discounts
 >
 > The project organises six raw commerce files into traceable Snowflake loading and tested dbt customer, product and order tables. Snowflake and local validation runs both pass, with matching analytical outputs.

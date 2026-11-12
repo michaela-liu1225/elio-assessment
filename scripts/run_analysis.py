@@ -61,7 +61,7 @@ def main():
             rows = [dict(zip(columns, row)) for row in cur.fetchall()]
             (output / f'{name}.json').write_text(json.dumps(rows, indent=2, default=serialise) + '\n')
             with (output / f'{name}.csv').open('w', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=columns)
+                writer = csv.DictWriter(file, fieldnames=columns, lineterminator='\n')
                 writer.writeheader()
                 writer.writerows(rows)
             metadata['queries'][name] = {'rows': len(rows), 'query_id': getattr(cur, 'sfqid', None)}
