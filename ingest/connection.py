@@ -25,7 +25,7 @@ def connect(*, database=True):
         if os.environ.get('SNOWFLAKE_PRIVATE_KEY_PASSPHRASE'):
             params['private_key_file_pwd'] = os.environ['SNOWFLAKE_PRIVATE_KEY_PASSPHRASE']
     else:
-        params['authenticator'] = os.environ.get('SNOWFLAKE_AUTHENTICATOR', 'externalbrowser')
+        params['authenticator'] = os.environ.get('SNOWFLAKE_AUTHENTICATOR', 'OAUTH_AUTHORIZATION_CODE')
         if os.environ.get('SNOWFLAKE_PASSWORD'):
             params['password'] = os.environ['SNOWFLAKE_PASSWORD']
     if database:

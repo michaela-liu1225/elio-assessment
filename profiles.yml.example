@@ -6,7 +6,7 @@ elio_assessment:
       account: "{{ env_var('SNOWFLAKE_ACCOUNT', 'configure_account') }}"
       user: "{{ env_var('SNOWFLAKE_USER', 'configure_user') }}"
       role: "{{ env_var('SNOWFLAKE_ROLE', 'SYSADMIN') }}"
-      authenticator: "{{ env_var('SNOWFLAKE_AUTHENTICATOR', 'externalbrowser') }}"
+      authenticator: "{{ env_var('SNOWFLAKE_AUTHENTICATOR', 'OAUTH_AUTHORIZATION_CODE') }}"
       database: "{{ env_var('SNOWFLAKE_DATABASE', 'ELIO_ASSESSMENT') }}"
       warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'ELIO_ASSESSMENT_WH') }}"
       schema: "{{ env_var('DBT_SCHEMA', 'DEV') }}"
