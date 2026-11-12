@@ -206,8 +206,8 @@ models:
     description: Latest known delivery timestamp among delivered orders on the first
       shopping date.
   - name: first_occasion_late
-    description: 1 if at least one first-occasion order arrived after its promise
-      date; used with missing count.
+    description: 1 if any first-occasion order was late, 0 only if all were known
+      on time, otherwise NULL; unknown timeliness is excluded from activation.
   - name: first_missing_delivery_count
     description: First-occasion delivered orders whose delivery timestamp is absent.
   - name: first_occasion_gmv

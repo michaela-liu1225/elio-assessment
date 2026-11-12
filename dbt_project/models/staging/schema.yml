@@ -20,6 +20,7 @@ models:
     - not_null
   - name: customer_id
     data_tests:
+    - unique
     - not_null
     - relationships:
         arguments:
@@ -30,6 +31,7 @@ models:
     - not_null
   - name: order_status
     data_tests:
+    - not_null
     - accepted_values:
         arguments:
           values:

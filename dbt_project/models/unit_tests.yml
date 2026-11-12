@@ -1,0 +1,96 @@
+version: 2
+unit_tests:
+  - name: payments_do_not_multiply_items_and_missing_is_not_zero
+    model: fct_orders
+    given:
+      - input: ref('stg_orders')
+        rows:
+          - {order_id: o1, customer_id: c1, order_status: delivered, purchased_at: '2018-01-01 10:00:00', delivered_at: '2018-01-05 18:00:00', estimated_delivery_at: '2018-01-05 00:00:00'}
+          - {order_id: o2, customer_id: c1, order_status: canceled, purchased_at: '2018-02-01 10:00:00'}
+          - {order_id: o3, customer_id: c1, order_status: delivered, purchased_at: '2018-03-01 10:00:00', delivered_at: '2018-03-06 00:01:00', estimated_delivery_at: '2018-03-05 00:00:00'}
+          - {order_id: o4, customer_id: c1, order_status: delivered, purchased_at: '2018-03-01 10:00:00', delivered_at: '2018-03-02 10:00:00', estimated_delivery_at: null}
+          - {order_id: o5, customer_id: c1, order_status: delivered, purchased_at: '2018-03-01 10:00:00', delivered_at: '2018-02-28 10:00:00', estimated_delivery_at: '2018-03-05 00:00:00'}
+      - input: ref('int_order_customers')
+        rows: [{customer_id: c1, customer_unique_id: buyer1}]
+      - input: ref('dim_customer')
+        rows: [{customer_unique_id: buyer1, customer_sk: sk1}]
+      - input: ref('stg_order_items')
+        rows:
+          - {order_id: o1, price: 10, freight_value: 2}
+          - {order_id: o1, price: 20, freight_value: 3}
+          - {order_id: o3, price: 50, freight_value: 0}
+      - input: ref('stg_payments')
+        rows:
+          - {order_id: o1, payment_value: 5}
+          - {order_id: o1, payment_value: 10}
+          - {order_id: o1, payment_value: 20}
+    expect:
+      rows:
+        - {order_id: o1, item_count: 2, merchandise_gmv: 30, freight_amount: 5, payment_record_count: 3, payment_amount: 35, payment_difference: 0, payment_reconciliation_status: matched, is_late: false}
+        - {order_id: o2, item_count: 0, merchandise_gmv: null, freight_amount: null, payment_record_count: 0, payment_amount: null, payment_difference: null, payment_reconciliation_status: missing_component, is_late: null}
+        - {order_id: o3, item_count: 1, merchandise_gmv: 50, freight_amount: 0, payment_record_count: 0, payment_amount: null, payment_difference: null, payment_reconciliation_status: missing_component, is_late: true}
+        - {order_id: o4, item_count: 0, merchandise_gmv: null, freight_amount: null, payment_record_count: 0, payment_amount: null, payment_difference: null, payment_reconciliation_status: missing_component, is_late: null}
+        - {order_id: o5, item_count: 0, merchandise_gmv: null, freight_amount: null, payment_record_count: 0, payment_amount: null, payment_difference: null, payment_reconciliation_status: missing_component, is_late: null}
+
+  - name: same_day_orders_form_one_purchase_occasion
+    model: int_purchase_occasions
+    given:
+      - input: ref('fct_orders')
+        rows:
+          - {customer_sk: sk1, purchase_date: '2018-01-01', purchased_at: '2018-01-01 10:00:00', delivered_at: '2018-01-05', is_delivered: true, merchandise_gmv: 10, is_late: false}
+          - {customer_sk: sk1, purchase_date: '2018-01-01', purchased_at: '2018-01-01 10:05:00', delivered_at: '2018-01-06', is_delivered: true, merchandise_gmv: 20, is_late: true}
+          - {customer_sk: sk1, purchase_date: '2018-01-02', is_delivered: false, merchandise_gmv: 99}
+          - {customer_sk: sk1, purchase_date: '2018-09-01', is_delivered: true, merchandise_gmv: 99}
+          - {customer_sk: unknown, purchase_date: '2018-01-01', delivered_at: '2018-01-05', is_delivered: true, merchandise_gmv: 10, is_late: null}
+          - {customer_sk: unknown, purchase_date: '2018-01-01', delivered_at: '2018-01-06', is_delivered: true, merchandise_gmv: 20, is_late: false}
+    expect:
+      rows:
+        - {customer_sk: sk1, purchase_date: '2018-01-01', order_count: 2, merchandise_gmv: 30, any_late: 1, missing_delivery_count: 0}
+        - {customer_sk: unknown, purchase_date: '2018-01-01', order_count: 2, merchandise_gmv: 30, any_late: null, missing_delivery_count: 0}
+
+  - name: sixty_day_boundary_and_immature_customers
+    model: mart_customer_retention
+    given:
+      - input: ref('int_purchase_occasions')
+        rows:
+          - {customer_sk: exact, purchase_date: '2018-07-02', order_count: 1, merchandise_gmv: 10}
+          - {customer_sk: exact, purchase_date: '2018-08-31', order_count: 1, merchandise_gmv: 20}
+          - {customer_sk: immature, purchase_date: '2018-07-03', order_count: 1, merchandise_gmv: 30}
+          - {customer_sk: absent, purchase_date: '2018-01-01', order_count: 1, merchandise_gmv: 40}
+      - input: ref('fct_order_items')
+        rows: []
+      - input: ref('dim_product')
+        rows: []
+    expect:
+      rows:
+        - {customer_sk: exact, is_mature_cohort: true, repeated_within_window: true}
+        - {customer_sk: immature, is_mature_cohort: false, repeated_within_window: null}
+        - {customer_sk: absent, is_mature_cohort: true, repeated_within_window: false}
+
+  - name: audience_excludes_inflight_orders_but_ignores_future_purchases
+    model: mart_activation_candidates
+    given:
+      - input: ref('mart_customer_retention')
+        rows:
+          - {customer_sk: inflight, first_purchase_date: '2018-07-01', first_delivered_at: '2018-07-10', observed_purchase_occasions: 1, first_occasion_late: 0, first_missing_delivery_count: 0, analysis_cutoff: '2018-08-31'}
+          - {customer_sk: future, first_purchase_date: '2018-07-01', first_delivered_at: '2018-07-10', observed_purchase_occasions: 1, first_occasion_late: 0, first_missing_delivery_count: 0, analysis_cutoff: '2018-08-31'}
+      - input: ref('fct_orders')
+        rows:
+          - {customer_sk: inflight, purchase_date: '2018-08-25', is_delivered: false}
+          - {customer_sk: future, purchase_date: '2018-09-01', is_delivered: true}
+    expect:
+      rows: [{customer_sk: future}]
+
+  - name: malformed_numbers_are_visible_and_item_sequence_is_not_rounded
+    model: stg_order_items
+    given:
+      - input: source('olist', 'order_items')
+        rows:
+          - {order_id: invalid_money, order_item_id: '1', price: 'oops', freight_value: '0'}
+          - {order_id: invalid_sequence, order_item_id: '1.5', price: '20.00', freight_value: '0'}
+          - {order_id: valid, order_item_id: '2', price: '20.00', freight_value: '0'}
+    expect:
+      rows:
+        - {order_id: invalid_money, order_item_id: 1, price: null, _has_parse_error: true}
+        - {order_id: invalid_sequence, order_item_id: null, price: 20, _has_parse_error: true}
+        - {order_id: valid, order_item_id: 2, price: 20, _has_parse_error: false}

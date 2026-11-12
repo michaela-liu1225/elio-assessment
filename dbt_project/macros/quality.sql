@@ -33,3 +33,13 @@
 {% macro analysis_cutoff() -%}
     cast('{{ var("analysis_cutoff") }}' as date)
 {%- endmacro %}
+
+{% macro strict_integer(expression) -%}
+    case when
+    {% if target.type == 'snowflake' %}
+        regexp_like({{ expression }}, '[+-]?[0-9]+')
+    {% else %}
+        regexp_full_match({{ expression }}, '[+-]?[0-9]+')
+    {% endif %}
+    then try_cast({{ expression }} as integer) end
+{%- endmacro %}

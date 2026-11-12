@@ -19,5 +19,9 @@ select
     _source_row_number,
     _loaded_at,
     _file_sha256,
-    ((nullif(trim(order_purchase_timestamp), '') is not null and try_cast(nullif(trim(order_purchase_timestamp), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null) or (nullif(trim(order_approved_at), '') is not null and try_cast(nullif(trim(order_approved_at), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null) or (nullif(trim(order_delivered_carrier_date), '') is not null and try_cast(nullif(trim(order_delivered_carrier_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null) or (nullif(trim(order_delivered_customer_date), '') is not null and try_cast(nullif(trim(order_delivered_customer_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null) or (nullif(trim(order_estimated_delivery_date), '') is not null and try_cast(nullif(trim(order_estimated_delivery_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)) as _has_parse_error
+    ((nullif(trim(order_purchase_timestamp), '') is not null and try_cast(nullif(trim(order_purchase_timestamp), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)
+        or (nullif(trim(order_approved_at), '') is not null and try_cast(nullif(trim(order_approved_at), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)
+        or (nullif(trim(order_delivered_carrier_date), '') is not null and try_cast(nullif(trim(order_delivered_carrier_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)
+        or (nullif(trim(order_delivered_customer_date), '') is not null and try_cast(nullif(trim(order_delivered_customer_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)
+        or (nullif(trim(order_estimated_delivery_date), '') is not null and try_cast(nullif(trim(order_estimated_delivery_date), '') as {{ 'timestamp_ntz' if target.type == 'snowflake' else 'timestamp' }}) is null)) as _has_parse_error
 from deduplicated
