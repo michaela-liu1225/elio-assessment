@@ -1,0 +1,158 @@
+[
+  {
+    "first_category": "Mixed categories",
+    "customers": 888,
+    "repeat_customers": 24,
+    "repeat_rate": 0.02702702702702703
+  },
+  {
+    "first_category": "fashion_bags_accessories",
+    "customers": 1478,
+    "repeat_customers": 25,
+    "repeat_rate": 0.016914749661705007
+  },
+  {
+    "first_category": "bed_bath_table",
+    "customers": 7627,
+    "repeat_customers": 111,
+    "repeat_rate": 0.014553559722040121
+  },
+  {
+    "first_category": "sports_leisure",
+    "customers": 6359,
+    "repeat_customers": 85,
+    "repeat_rate": 0.013366881585154899
+  },
+  {
+    "first_category": "furniture_decor",
+    "customers": 5142,
+    "repeat_customers": 66,
+    "repeat_rate": 0.012835472578763127
+  },
+  {
+    "first_category": "home_appliances",
+    "customers": 549,
+    "repeat_customers": 6,
+    "repeat_rate": 0.01092896174863388
+  },
+  {
+    "first_category": "pet_shop",
+    "customers": 1337,
+    "repeat_customers": 14,
+    "repeat_rate": 0.010471204188481676
+  },
+  {
+    "first_category": "auto",
+    "customers": 3044,
+    "repeat_customers": 31,
+    "repeat_rate": 0.010183968462549276
+  },
+  {
+    "first_category": "telephony",
+    "customers": 3546,
+    "repeat_customers": 36,
+    "repeat_rate": 0.01015228426395939
+  },
+  {
+    "first_category": "consoles_games",
+    "customers": 894,
+    "repeat_customers": 9,
+    "repeat_rate": 0.010067114093959731
+  },
+  {
+    "first_category": "toys",
+    "customers": 3345,
+    "repeat_customers": 33,
+    "repeat_rate": 0.009865470852017937
+  },
+  {
+    "first_category": "Unknown",
+    "customers": 1219,
+    "repeat_customers": 12,
+    "repeat_rate": 0.009844134536505332
+  },
+  {
+    "first_category": "watches_gifts",
+    "customers": 4457,
+    "repeat_customers": 43,
+    "repeat_rate": 0.009647745120035899
+  },
+  {
+    "first_category": "baby",
+    "customers": 2261,
+    "repeat_customers": 21,
+    "repeat_rate": 0.009287925696594427
+  },
+  {
+    "first_category": "health_beauty",
+    "customers": 6902,
+    "repeat_customers": 64,
+    "repeat_rate": 0.00927267458707621
+  },
+  {
+    "first_category": "perfumery",
+    "customers": 2594,
+    "repeat_customers": 24,
+    "repeat_rate": 0.009252120277563608
+  },
+  {
+    "first_category": "garden_tools",
+    "customers": 3042,
+    "repeat_customers": 28,
+    "repeat_rate": 0.009204470742932281
+  },
+  {
+    "first_category": "luggage_accessories",
+    "customers": 867,
+    "repeat_customers": 7,
+    "repeat_rate": 0.008073817762399077
+  },
+  {
+    "first_category": "housewares",
+    "customers": 4499,
+    "repeat_customers": 36,
+    "repeat_rate": 0.008001778172927318
+  },
+  {
+    "first_category": "stationery",
+    "customers": 1873,
+    "repeat_customers": 13,
+    "repeat_rate": 0.0069407367859049655
+  },
+  {
+    "first_category": "computers_accessories",
+    "customers": 5535,
+    "repeat_customers": 33,
+    "repeat_rate": 0.005962059620596206
+  },
+  {
+    "first_category": "electronics",
+    "customers": 2209,
+    "repeat_customers": 13,
+    "repeat_rate": 0.005885015844273427
+  },
+  {
+    "first_category": "musical_instruments",
+    "customers": 525,
+    "repeat_customers": 3,
+    "repeat_rate": 0.005714285714285714
+  },
+  {
+    "first_category": "small_appliances",
+    "customers": 534,
+    "repeat_customers": 3,
+    "repeat_rate": 0.0056179775280898875
+  },
+  {
+    "first_category": "office_furniture",
+    "customers": 1121,
+    "repeat_customers": 6,
+    "repeat_rate": 0.0053523639607493305
+  },
+  {
+    "first_category": "cool_stuff",
+    "customers": 3204,
+    "repeat_customers": 17,
+    "repeat_rate": 0.005305867665418227
+  }
+]

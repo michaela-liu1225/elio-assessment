@@ -1,0 +1,82 @@
+[
+  {
+    "order_status": "approved",
+    "orders": 2,
+    "missing_items": 0,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 0,
+    "late_deliveries": 0,
+    "merchandise_gmv": 209.6
+  },
+  {
+    "order_status": "canceled",
+    "orders": 625,
+    "missing_items": 164,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 2,
+    "late_deliveries": 0,
+    "merchandise_gmv": 95235.27
+  },
+  {
+    "order_status": "created",
+    "orders": 5,
+    "missing_items": 5,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 0,
+    "late_deliveries": 0,
+    "merchandise_gmv": null
+  },
+  {
+    "order_status": "delivered",
+    "orders": 96478,
+    "missing_items": 0,
+    "missing_payments": 1,
+    "missing_delivery_timestamps": 8,
+    "payment_discrepancies": 299,
+    "late_deliveries": 6534,
+    "merchandise_gmv": 13221498.11
+  },
+  {
+    "order_status": "invoiced",
+    "orders": 314,
+    "missing_items": 2,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 0,
+    "late_deliveries": 0,
+    "merchandise_gmv": 61526.37
+  },
+  {
+    "order_status": "processing",
+    "orders": 301,
+    "missing_items": 0,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 0,
+    "late_deliveries": 0,
+    "merchandise_gmv": 60439.22
+  },
+  {
+    "order_status": "shipped",
+    "orders": 1107,
+    "missing_items": 1,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 2,
+    "late_deliveries": 0,
+    "merchandise_gmv": 150727.44
+  },
+  {
+    "order_status": "unavailable",
+    "orders": 609,
+    "missing_items": 603,
+    "missing_payments": 0,
+    "missing_delivery_timestamps": 0,
+    "payment_discrepancies": 0,
+    "late_deliveries": 0,
+    "merchandise_gmv": 2007.69
+  }
+]

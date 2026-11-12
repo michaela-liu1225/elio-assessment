@@ -1,0 +1,140 @@
+{
+  "engine": "snowflake",
+  "recorded_at_utc": "2026-11-12T23:47:39.725987+00:00",
+  "queries": {
+    "runtime": {
+      "query_id": "01c85f33-0004-d442-0000-000409629179",
+      "sql": "select current_version() as snowflake_version, current_region() as region, current_role() as role, current_database() as database_name, current_warehouse() as warehouse",
+      "rows": [
+        {
+          "snowflake_version": "10.41.101",
+          "region": "AWS_EU_WEST_2",
+          "role": "SYSADMIN",
+          "database_name": "ELIO_ASSESSMENT",
+          "warehouse": "ELIO_ASSESSMENT_WH"
+        }
+      ]
+    },
+    "load_audit": {
+      "query_id": "01c85f33-0004-d5a8-0000-0004096281c9",
+      "sql": "select table_name, file_sha256, row_count from ELIO_ASSESSMENT.RAW.LOAD_AUDIT order by table_name, file_sha256",
+      "rows": [
+        {
+          "table_name": "category_translation",
+          "file_sha256": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278",
+          "row_count": 71
+        },
+        {
+          "table_name": "customers",
+          "file_sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+          "row_count": 99441
+        },
+        {
+          "table_name": "order_items",
+          "file_sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+          "row_count": 112650
+        },
+        {
+          "table_name": "orders",
+          "file_sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+          "row_count": 99441
+        },
+        {
+          "table_name": "payments",
+          "file_sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+          "row_count": 103886
+        },
+        {
+          "table_name": "products",
+          "file_sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+          "row_count": 32951
+        }
+      ]
+    },
+    "raw_count_orders": {
+      "query_id": "01c85f33-0004-d5a8-0000-0004096281cd",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.ORDERS",
+      "rows": [
+        {
+          "source_rows": 99441
+        }
+      ]
+    },
+    "raw_count_order_items": {
+      "query_id": "01c85f33-0004-d442-0000-00040962917d",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.ORDER_ITEMS",
+      "rows": [
+        {
+          "source_rows": 112650
+        }
+      ]
+    },
+    "raw_count_customers": {
+      "query_id": "01c85f33-0004-d442-0000-000409629185",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.CUSTOMERS",
+      "rows": [
+        {
+          "source_rows": 99441
+        }
+      ]
+    },
+    "raw_count_products": {
+      "query_id": "01c85f33-0004-d5a8-0000-0004096281d1",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.PRODUCTS",
+      "rows": [
+        {
+          "source_rows": 32951
+        }
+      ]
+    },
+    "raw_count_payments": {
+      "query_id": "01c85f33-0004-d5a8-0000-0004096281d5",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.PAYMENTS",
+      "rows": [
+        {
+          "source_rows": 103886
+        }
+      ]
+    },
+    "raw_count_category_translation": {
+      "query_id": "01c85f33-0004-d442-0000-000409629189",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.CATEGORY_TRANSLATION",
+      "rows": [
+        {
+          "source_rows": 71
+        }
+      ]
+    },
+    "catalogue_quality": {
+      "query_id": "01c85f33-0004-d442-0000-00040962918d",
+      "sql": "select count(case when category_name='__unknown__' then 1 end) as missing_category_products, count(distinct case when not has_translation and category_name<>'__unknown__' then category_name end) as untranslated_categories from ELIO_ASSESSMENT.DEV_MARTS.DIM_PRODUCT",
+      "rows": [
+        {
+          "missing_category_products": 610,
+          "untranslated_categories": 2
+        }
+      ]
+    },
+    "zero_payments": {
+      "query_id": "01c85f33-0004-d5a8-0000-0004096281d9",
+      "sql": "select payment_type, count(*) as payment_records from ELIO_ASSESSMENT.DEV_STAGING.STG_PAYMENTS where payment_value=0 group by payment_type order by payment_type",
+      "rows": [
+        {
+          "payment_type": "not_defined",
+          "payment_records": 3
+        },
+        {
+          "payment_type": "voucher",
+          "payment_records": 6
+        }
+      ]
+    }
+  },
+  "warehouse": {
+    "name": "ELIO_ASSESSMENT_WH",
+    "size": "X-Small",
+    "auto_suspend": 60,
+    "auto_resume": "true"
+  },
+  "warehouse_query_id": "01c85f33-0004-d5a8-0000-0004096281c5"
+}

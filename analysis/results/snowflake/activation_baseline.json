@@ -1,0 +1,10 @@
+[
+  {
+    "eligible_customers": 73082,
+    "repeat_customers": 244,
+    "repeat_rate": 0.003338715415560603,
+    "subsequent_orders": 251,
+    "subsequent_gmv": 29970.76,
+    "subsequent_order_aov": 119.40541833
+  }
+]

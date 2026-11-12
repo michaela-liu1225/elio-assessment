@@ -1,0 +1,174 @@
+version: 2
+models:
+- name: stg_orders
+  description: Cleaned and deterministically deduplicated orders. Conflicting source
+    payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  columns:
+  - name: order_id
+    data_tests:
+    - not_null
+    - unique
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null
+  - name: customer_id
+    data_tests:
+    - unique
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_customers')
+          field: customer_id
+  - name: purchased_at
+    data_tests:
+    - not_null
+  - name: order_status
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - created
+          - approved
+          - invoiced
+          - processing
+          - shipped
+          - delivered
+          - unavailable
+          - canceled
+- name: stg_order_items
+  description: Cleaned and deterministically deduplicated order_items. Conflicting
+    source payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  - unique_combination:
+      arguments:
+        columns:
+        - order_id
+        - order_item_id
+  - expression_is_true:
+      arguments:
+        expression: price >= 0 and freight_value >= 0 and order_item_id >= 1
+  columns:
+  - name: order_id
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_orders')
+          field: order_id
+  - name: order_item_id
+    data_tests:
+    - not_null
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null
+  - name: product_id
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_products')
+          field: product_id
+- name: stg_customers
+  description: Cleaned and deterministically deduplicated customers. Conflicting source
+    payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  columns:
+  - name: customer_id
+    data_tests:
+    - not_null
+    - unique
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null
+  - name: customer_unique_id
+    data_tests:
+    - not_null
+- name: stg_products
+  description: Cleaned and deterministically deduplicated products. Conflicting source
+    payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  columns:
+  - name: product_id
+    data_tests:
+    - not_null
+    - unique
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null
+- name: stg_payments
+  description: Cleaned and deterministically deduplicated payments. Conflicting source
+    payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  - unique_combination:
+      arguments:
+        columns:
+        - order_id
+        - payment_sequence
+  - expression_is_true:
+      arguments:
+        expression: payment_value >= 0 and payment_sequence >= 1 and installment_count
+          >= 0
+  columns:
+  - name: order_id
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_orders')
+          field: order_id
+  - name: payment_sequence
+    data_tests:
+    - not_null
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null
+- name: stg_category_translation
+  description: Cleaned and deterministically deduplicated category_translation. Conflicting
+    source payloads fail upstream tests.
+  data_tests:
+  - expression_is_true:
+      arguments:
+        expression: not _has_parse_error
+  columns:
+  - name: category_name
+    data_tests:
+    - not_null
+    - unique
+  - name: _source
+    data_tests:
+    - not_null
+  - name: _loaded_at
+    data_tests:
+    - not_null

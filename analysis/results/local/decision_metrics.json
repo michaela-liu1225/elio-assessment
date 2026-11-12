@@ -1,0 +1,80 @@
+{
+  "engine": "local",
+  "cutoff": "2018-08-31",
+  "retention": {
+    "customers": 81344,
+    "repeat_customers": 832,
+    "repeat_rate": 0.010228166797797011
+  },
+  "retention_95pct_wilson": [
+    0.009559477180675917,
+    0.010943114740582878
+  ],
+  "activation_baseline": {
+    "eligible_customers": 73082,
+    "repeat_customers": 244,
+    "repeat_rate": 0.003338715415560603,
+    "subsequent_orders": 251,
+    "subsequent_gmv": 29970.76,
+    "subsequent_order_aov": 119.40541832669322
+  },
+  "activation_baseline_95pct_wilson": [
+    0.00294578913826204,
+    0.0037838535563087783
+  ],
+  "audience": {
+    "candidate_customers": 5718,
+    "first_occasion_aov": 136.14941063308848,
+    "earliest_first_delivery": "2018-07-02",
+    "latest_first_delivery": "2018-08-01"
+  },
+  "assumptions": {
+    "reachable_share": 0.5,
+    "net_contribution_rate_before_marketing": 0.1,
+    "contact_cost_brl": 0.02,
+    "illustrative_uplifts_absolute": [
+      0,
+      0.0025,
+      0.005,
+      0.01
+    ],
+    "coupon_comparison_brl": 10,
+    "fixed_costs": "excluded; must be costed before launch"
+  },
+  "scenarios": [
+    {
+      "uplift_absolute": 0,
+      "reachable_customers": 2859,
+      "incremental_orders": 0,
+      "incremental_gmv_brl": 0.0,
+      "net_contribution_before_fixed_costs_brl": -57.18,
+      "with_brl10_coupon_brl": -152.63387373087764
+    },
+    {
+      "uplift_absolute": 0.0025,
+      "reachable_customers": 2859,
+      "incremental_orders": 7.1475,
+      "incremental_gmv_brl": 853.4502274900398,
+      "net_contribution_before_fixed_costs_brl": 28.165022749003988,
+      "with_brl10_coupon_brl": -138.76385098187365
+    },
+    {
+      "uplift_absolute": 0.005,
+      "reachable_customers": 2859,
+      "incremental_orders": 14.295,
+      "incremental_gmv_brl": 1706.9004549800795,
+      "net_contribution_before_fixed_costs_brl": 113.51004549800797,
+      "with_brl10_coupon_brl": -124.89382823286968
+    },
+    {
+      "uplift_absolute": 0.01,
+      "reachable_customers": 2859,
+      "incremental_orders": 28.59,
+      "incremental_gmv_brl": 3413.800909960159,
+      "net_contribution_before_fixed_costs_brl": 284.20009099601594,
+      "with_brl10_coupon_brl": -97.15378273486175
+    }
+  ],
+  "sample_per_arm_at_0_5_percentage_point_uplift": 3644,
+  "breakeven_uplift_before_fixed_costs": 0.0016749658667314408
+}

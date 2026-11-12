@@ -1,0 +1,25 @@
+name: elio_assessment
+version: '1.0.0'
+config-version: 2
+profile: elio_assessment
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+clean-targets: [target, dbt_packages]
+vars:
+  analysis_cutoff: '2018-08-31'
+  cohort_start: '2017-01-01'
+  repeat_window_days: 60
+models:
+  elio_assessment:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: conformed
+    marts:
+      +materialized: table
+      +schema: marts
+flags:
+  send_anonymous_usage_stats: false
