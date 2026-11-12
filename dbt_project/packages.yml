@@ -1,0 +1,2 @@
+# No third-party dbt packages are required. All tests/macros are in this project.
+packages: []

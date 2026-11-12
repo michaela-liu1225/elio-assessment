@@ -1,0 +1,98 @@
+version: 2
+sources:
+- name: olist
+  database: '{{ target.database }}'
+  schema: RAW
+  tables:
+  - name: orders
+    description: Uncleaned UTF-8 strings from olist_orders_dataset.csv, plus file/load
+      provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - order_id
+          payload_columns:
+          - order_id
+          - customer_id
+          - order_status
+          - order_purchase_timestamp
+          - order_approved_at
+          - order_delivered_carrier_date
+          - order_delivered_customer_date
+          - order_estimated_delivery_date
+  - name: order_items
+    description: Uncleaned UTF-8 strings from olist_order_items_dataset.csv, plus
+      file/load provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - order_id
+          - order_item_id
+          payload_columns:
+          - order_id
+          - order_item_id
+          - product_id
+          - seller_id
+          - shipping_limit_date
+          - price
+          - freight_value
+  - name: customers
+    description: Uncleaned UTF-8 strings from olist_customers_dataset.csv, plus file/load
+      provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - customer_id
+          payload_columns:
+          - customer_id
+          - customer_unique_id
+          - customer_zip_code_prefix
+          - customer_city
+          - customer_state
+  - name: products
+    description: Uncleaned UTF-8 strings from olist_products_dataset.csv, plus file/load
+      provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - product_id
+          payload_columns:
+          - product_id
+          - product_category_name
+          - product_name_lenght
+          - product_description_lenght
+          - product_photos_qty
+          - product_weight_g
+          - product_length_cm
+          - product_height_cm
+          - product_width_cm
+  - name: payments
+    description: Uncleaned UTF-8 strings from olist_order_payments_dataset.csv, plus
+      file/load provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - order_id
+          - payment_sequential
+          payload_columns:
+          - order_id
+          - payment_sequential
+          - payment_type
+          - payment_installments
+          - payment_value
+  - name: category_translation
+    description: Uncleaned UTF-8 strings from product_category_name_translation.csv,
+      plus file/load provenance.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - product_category_name
+          payload_columns:
+          - product_category_name
+          - product_category_name_english

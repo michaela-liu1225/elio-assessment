@@ -1,0 +1,288 @@
+version: 2
+models:
+- name: dim_customer
+  description: One row per stable observed customer identity.
+  columns:
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - unique
+  - name: customer_unique_id
+    description: Publisher-provided persistent observed buyer identifier; not guaranteed
+      cross-marketplace identity.
+    data_tests:
+    - unique
+    - not_null
+- name: dim_product
+  description: One row per product, deliberately denormalised with conformed category
+    labels.
+  columns:
+  - name: product_sk
+    description: Deterministic MD5 of the product namespace and product_id.
+    data_tests:
+    - not_null
+    - unique
+  - name: product_id
+    description: Publisher product identifier.
+    data_tests:
+    - unique
+    - not_null
+  - name: category_name
+    description: Portuguese category key; __unknown__ preserves products with no category.
+  - name: category_label
+    description: English category where supplied; otherwise original Portuguese or
+      Unknown.
+  - name: has_translation
+    description: Whether the publisher supplied an English category translation.
+  - name: weight_g
+    description: Product weight in grams; nullable when missing in source.
+  - name: length_cm
+    description: Product length in centimetres; nullable when missing.
+  - name: height_cm
+    description: Product height in centimetres; nullable when missing.
+  - name: width_cm
+    description: Product width in centimetres; nullable when missing.
+- name: fct_orders
+  description: One row per source order, preserving canceled orders, missing components
+    and payment discrepancies.
+  columns:
+  - name: order_id
+    description: Publisher order identifier; order-level grain only in fct_orders.
+    data_tests:
+    - not_null
+    - unique
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('dim_customer')
+          field: customer_sk
+  - name: order_customer_id
+    description: Order-specific customer/address context key, distinct from stable
+      buyer identity.
+  - name: order_status
+    description: Final observed order status in this static extract; not a historical
+      status-change log.
+  - name: purchased_at
+    description: Source purchase timestamp without an assumed timezone.
+  - name: purchase_date
+    description: Calendar purchase date from the source timestamp; source timezone
+      is unspecified.
+  - name: approved_at
+    description: Order approval timestamp; NULL is retained when absent.
+  - name: carrier_received_at
+    description: Reported carrier handover timestamp; NULL is retained when absent.
+  - name: delivered_at
+    description: Reported customer delivery timestamp; missing delivery does not become
+      zero days.
+  - name: estimated_delivery_date
+    description: Promised delivery calendar date. Delivery during that date is on
+      time.
+  - name: delivery_zip_prefix
+    description: Five-character delivery postal prefix, preserving leading zeros;
+      not a unique location key.
+  - name: delivery_city
+    description: Trimmed lowercase order-time delivery city with Portuguese characters
+      retained.
+  - name: delivery_state
+    description: Uppercase order-time Brazilian state code.
+  - name: item_count
+    description: Count of actual item records. Missing items become count zero, not
+      zero merchandise value.
+  - name: merchandise_gmv
+    description: Sum of item prices, excluding freight. NULL where no items exist.
+      Not net revenue or profit.
+  - name: freight_amount
+    description: Customer freight charge; not the platform delivery cost or contribution.
+  - name: order_value
+    description: Merchandise GMV plus freight; NULL if item components are missing.
+  - name: payment_record_count
+    description: Number of payment records, which may exceed one per order.
+  - name: payment_amount
+    description: Sum of payment records including freight; NULL when no payment exists.
+      Not recognised revenue.
+  - name: payment_difference
+    description: Payment amount minus merchandise plus freight. Differences are retained,
+      not overwritten.
+  - name: is_delivered
+    description: Whether final extract status equals delivered.
+  - name: _source
+    description: Original staged filename for traceability.
+  - name: _loaded_at
+    description: Ingestion timestamp, not business updated_at or source freshness.
+  - name: is_late
+    description: Delivery date later than promised date; NULL when delivery/estimate
+      is absent or invalid.
+  - name: delivery_days
+    description: Calendar-day boundaries from purchase to delivery; NULL for missing/reversed
+      delivery time.
+  - name: payment_reconciliation_status
+    description: matched within BRL 0.01, difference, or missing_component.
+- name: fct_order_items
+  description: One row per (order_id, order_item_id). Additive item prices and freight
+    are never joined to raw payment rows.
+  columns:
+  - name: order_item_sk
+    description: Deterministic MD5 of order_id and order_item_id with an item namespace.
+    data_tests:
+    - not_null
+    - unique
+  - name: order_id
+    description: Publisher order identifier; order-level grain only in fct_orders.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('fct_orders')
+          field: order_id
+  - name: order_item_id
+    description: Item sequence within an order; not a quantity.
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('dim_customer')
+          field: customer_sk
+  - name: product_sk
+    description: Deterministic MD5 of the product namespace and product_id.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('dim_product')
+          field: product_sk
+  - name: seller_id
+    description: Seller identifier retained as a degenerate dimension; seller attributes
+      are out of scope.
+  - name: purchase_date
+    description: Calendar purchase date from the source timestamp; source timezone
+      is unspecified.
+  - name: purchased_at
+    description: Source purchase timestamp without an assumed timezone.
+  - name: order_status
+    description: Final observed order status in this static extract; not a historical
+      status-change log.
+  - name: item_gmv
+    description: Item merchandise price, excluding freight; BRL assumed for this Brazilian
+      dataset.
+  - name: freight_amount
+    description: Customer freight charge; not the platform delivery cost or contribution.
+  - name: item_count
+    description: Count of actual item records. Missing items become count zero, not
+      zero merchandise value.
+  - name: _source
+    description: Original staged filename for traceability.
+  - name: _loaded_at
+    description: Ingestion timestamp, not business updated_at or source freshness.
+- name: mart_customer_retention
+  description: One row per customer with an observed delivered purchase, a fixed cutoff
+    and explicit cohort maturity.
+  columns:
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - unique
+    - relationships:
+        arguments:
+          to: ref('dim_customer')
+          field: customer_sk
+  - name: first_purchase_date
+    description: Earliest observed delivered purchase date. It is not necessarily
+      the customer lifetime first purchase.
+  - name: second_purchase_date
+    description: Second distinct delivered purchase date, excluding same-day split
+      checkouts.
+  - name: first_delivered_at
+    description: Latest known delivery timestamp among delivered orders on the first
+      shopping date.
+  - name: first_occasion_late
+    description: 1 if at least one first-occasion order arrived after its promise
+      date; used with missing count.
+  - name: first_missing_delivery_count
+    description: First-occasion delivered orders whose delivery timestamp is absent.
+  - name: first_occasion_gmv
+    description: Total merchandise GMV across delivered orders on the first shopping
+      date.
+  - name: observed_purchase_occasions
+    description: Distinct delivered purchase dates through the analysis cutoff.
+  - name: observed_delivered_orders
+    description: Delivered order count through the cutoff; may exceed purchase occasions.
+  - name: first_category
+    description: Single category on the first delivered shopping date, or Mixed categories.
+  - name: analysis_cutoff
+    description: Explicit historical observation date, independent of the execution
+      date.
+  - name: is_mature_cohort
+    description: First date is in the configured cohort range and has the full repeat
+      observation window.
+  - name: repeated_within_window
+    description: Second distinct purchase date is within the configured window; NULL
+      for immature/out-of-scope cohorts.
+- name: mart_activation_history
+  description: One row per eligible historical customer at the 30-day delivery landmark,
+    with a full 30-day follow-up.
+  columns:
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - unique
+    - relationships:
+        arguments:
+          to: ref('dim_customer')
+          field: customer_sk
+  - name: landmark_date
+    description: Thirty days after first-occasion delivery; historical eligibility
+      is evaluated at this point.
+  - name: first_category
+    description: Single category on the first delivered shopping date, or Mixed categories.
+  - name: first_occasion_gmv
+    description: Total merchandise GMV across delivered orders on the first shopping
+      date.
+  - name: repeated_next_30d
+    description: At least one subsequently delivered order purchased during days 1-30
+      after the landmark.
+  - name: next_30d_gmv
+    description: Merchandise GMV of qualifying orders after the landmark; zero when
+      none occurred.
+  - name: next_30d_orders
+    description: Delivered orders purchased during the 30-day landmark follow-up.
+- name: mart_activation_candidates
+  description: One row per illustrative campaign candidate as of the historical cutoff.
+    Live consent/contact/complaint checks are not available in this dataset.
+  columns:
+  - name: customer_sk
+    description: Deterministic MD5 of the customer namespace and customer_unique_id.
+      Stable across reruns.
+    data_tests:
+    - not_null
+    - unique
+    - relationships:
+        arguments:
+          to: ref('dim_customer')
+          field: customer_sk
+  - name: first_purchase_date
+    description: Earliest observed delivered purchase date. It is not necessarily
+      the customer lifetime first purchase.
+  - name: first_delivery_date
+    description: Latest first-occasion delivery date; used to define the illustrative
+      30-60-day audience.
+  - name: first_category
+    description: Single category on the first delivered shopping date, or Mixed categories.
+  - name: first_occasion_gmv
+    description: Total merchandise GMV across delivered orders on the first shopping
+      date.
+  - name: analysis_cutoff
+    description: Explicit historical observation date, independent of the execution
+      date.
