@@ -1,0 +1,14 @@
+[
+  {
+    "first_occasion_late": 0,
+    "customers": 75540,
+    "repeat_customers": 786,
+    "repeat_rate": 0.01040508339952343
+  },
+  {
+    "first_occasion_late": 1,
+    "customers": 5796,
+    "repeat_customers": 46,
+    "repeat_rate": 0.007936507936507936
+  }
+]

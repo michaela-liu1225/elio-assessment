@@ -1,0 +1,127 @@
+[
+  {
+    "purchase_month": "2016-09-01",
+    "orders": 4,
+    "delivered_orders": 1
+  },
+  {
+    "purchase_month": "2016-10-01",
+    "orders": 324,
+    "delivered_orders": 265
+  },
+  {
+    "purchase_month": "2016-12-01",
+    "orders": 1,
+    "delivered_orders": 1
+  },
+  {
+    "purchase_month": "2017-01-01",
+    "orders": 800,
+    "delivered_orders": 750
+  },
+  {
+    "purchase_month": "2017-02-01",
+    "orders": 1780,
+    "delivered_orders": 1653
+  },
+  {
+    "purchase_month": "2017-03-01",
+    "orders": 2682,
+    "delivered_orders": 2546
+  },
+  {
+    "purchase_month": "2017-04-01",
+    "orders": 2404,
+    "delivered_orders": 2303
+  },
+  {
+    "purchase_month": "2017-05-01",
+    "orders": 3700,
+    "delivered_orders": 3546
+  },
+  {
+    "purchase_month": "2017-06-01",
+    "orders": 3245,
+    "delivered_orders": 3135
+  },
+  {
+    "purchase_month": "2017-07-01",
+    "orders": 4026,
+    "delivered_orders": 3872
+  },
+  {
+    "purchase_month": "2017-08-01",
+    "orders": 4331,
+    "delivered_orders": 4193
+  },
+  {
+    "purchase_month": "2017-09-01",
+    "orders": 4285,
+    "delivered_orders": 4150
+  },
+  {
+    "purchase_month": "2017-10-01",
+    "orders": 4631,
+    "delivered_orders": 4478
+  },
+  {
+    "purchase_month": "2017-11-01",
+    "orders": 7544,
+    "delivered_orders": 7289
+  },
+  {
+    "purchase_month": "2017-12-01",
+    "orders": 5673,
+    "delivered_orders": 5513
+  },
+  {
+    "purchase_month": "2018-01-01",
+    "orders": 7269,
+    "delivered_orders": 7069
+  },
+  {
+    "purchase_month": "2018-02-01",
+    "orders": 6728,
+    "delivered_orders": 6555
+  },
+  {
+    "purchase_month": "2018-03-01",
+    "orders": 7211,
+    "delivered_orders": 7003
+  },
+  {
+    "purchase_month": "2018-04-01",
+    "orders": 6939,
+    "delivered_orders": 6798
+  },
+  {
+    "purchase_month": "2018-05-01",
+    "orders": 6873,
+    "delivered_orders": 6749
+  },
+  {
+    "purchase_month": "2018-06-01",
+    "orders": 6167,
+    "delivered_orders": 6099
+  },
+  {
+    "purchase_month": "2018-07-01",
+    "orders": 6292,
+    "delivered_orders": 6159
+  },
+  {
+    "purchase_month": "2018-08-01",
+    "orders": 6512,
+    "delivered_orders": 6351
+  },
+  {
+    "purchase_month": "2018-09-01",
+    "orders": 16,
+    "delivered_orders": 0
+  },
+  {
+    "purchase_month": "2018-10-01",
+    "orders": 4,
+    "delivered_orders": 0
+  }
+]

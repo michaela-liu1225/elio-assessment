@@ -1,0 +1,110 @@
+[
+  {
+    "cohort_month": "2017-01-01",
+    "customers": 717,
+    "repeat_customers": 6,
+    "repeat_rate": 0.008368200836820083
+  },
+  {
+    "cohort_month": "2017-02-01",
+    "customers": 1628,
+    "repeat_customers": 12,
+    "repeat_rate": 0.007371007371007371
+  },
+  {
+    "cohort_month": "2017-03-01",
+    "customers": 2503,
+    "repeat_customers": 19,
+    "repeat_rate": 0.0075908909308829405
+  },
+  {
+    "cohort_month": "2017-04-01",
+    "customers": 2256,
+    "repeat_customers": 24,
+    "repeat_rate": 0.010638297872340425
+  },
+  {
+    "cohort_month": "2017-05-01",
+    "customers": 3451,
+    "repeat_customers": 43,
+    "repeat_rate": 0.012460156476383656
+  },
+  {
+    "cohort_month": "2017-06-01",
+    "customers": 3037,
+    "repeat_customers": 30,
+    "repeat_rate": 0.009878169245966415
+  },
+  {
+    "cohort_month": "2017-07-01",
+    "customers": 3752,
+    "repeat_customers": 42,
+    "repeat_rate": 0.011194029850746268
+  },
+  {
+    "cohort_month": "2017-08-01",
+    "customers": 4057,
+    "repeat_customers": 50,
+    "repeat_rate": 0.012324377618930245
+  },
+  {
+    "cohort_month": "2017-09-01",
+    "customers": 4004,
+    "repeat_customers": 55,
+    "repeat_rate": 0.013736263736263736
+  },
+  {
+    "cohort_month": "2017-10-01",
+    "customers": 4328,
+    "repeat_customers": 53,
+    "repeat_rate": 0.012245841035120148
+  },
+  {
+    "cohort_month": "2017-11-01",
+    "customers": 7060,
+    "repeat_customers": 77,
+    "repeat_rate": 0.010906515580736544
+  },
+  {
+    "cohort_month": "2017-12-01",
+    "customers": 5338,
+    "repeat_customers": 36,
+    "repeat_rate": 0.0067440989134507304
+  },
+  {
+    "cohort_month": "2018-01-01",
+    "customers": 6842,
+    "repeat_customers": 61,
+    "repeat_rate": 0.008915521777258111
+  },
+  {
+    "cohort_month": "2018-02-01",
+    "customers": 6288,
+    "repeat_customers": 57,
+    "repeat_rate": 0.009064885496183206
+  },
+  {
+    "cohort_month": "2018-03-01",
+    "customers": 6774,
+    "repeat_customers": 63,
+    "repeat_rate": 0.009300265721877768
+  },
+  {
+    "cohort_month": "2018-04-01",
+    "customers": 6582,
+    "repeat_customers": 80,
+    "repeat_rate": 0.012154360376785172
+  },
+  {
+    "cohort_month": "2018-05-01",
+    "customers": 6506,
+    "repeat_customers": 70,
+    "repeat_rate": 0.010759299108515216
+  },
+  {
+    "cohort_month": "2018-06-01",
+    "customers": 5878,
+    "repeat_customers": 51,
+    "repeat_rate": 0.008676420551207894
+  }
+]
