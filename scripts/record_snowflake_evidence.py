@@ -42,6 +42,11 @@ def main():
               f'from {db}.{schema}_MARTS.DIM_PRODUCT')
         query('zero_payments', f'select payment_type, count(*) as payment_records from {db}.{schema}_STAGING.STG_PAYMENTS '
               'where payment_value=0 group by payment_type order by payment_type')
+        query('review_grain', f'select count(*) as review_order_pairs, count(distinct review_id) as distinct_review_ids, '
+              f'count(distinct order_id) as distinct_reviewed_orders from {db}.RAW.REVIEWS')
+        worklist = (ROOT / 'sql/dispatch_worklist.sql').read_text().strip().rstrip(';')
+        worklist = worklist.replace('ELIO_ASSESSMENT.DEV_MARTS.', f'{db}.{schema}_MARTS.')
+        query('reference_worklist_count', f'select count(*) as reference_candidates from ({worklist}\n)')
     output = ROOT / 'docs/evidence/snowflake_environment.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, default=str) + '\n')

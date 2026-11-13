@@ -37,6 +37,13 @@
       "status": "already_loaded"
     },
     {
+      "file": "olist_order_reviews_dataset.csv",
+      "rows": 99224,
+      "bytes": 14451670,
+      "sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7",
+      "status": "already_loaded"
+    },
+    {
       "file": "product_category_name_translation.csv",
       "rows": 71,
       "bytes": 2613,

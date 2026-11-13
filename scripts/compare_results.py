@@ -36,14 +36,22 @@ def main():
         b = json.loads((base / 'snowflake' / f'{name}.json').read_text())
         compare(a, b, name)
         checks[name] = {'rows': len(a), 'status': 'matched'}
+    derived = {}
+    for name in ['decision_metrics', 'commercial_decision']:
+        a = json.loads((base / 'local' / f'{name}.json').read_text())
+        b = json.loads((base / 'snowflake' / f'{name}.json').read_text())
+        assert a.pop('engine') == 'local' and b.pop('engine') == 'snowflake', name
+        compare(a, b, name)
+        derived[name] = {'status': 'matched'}
     result = {'compared_at_utc': datetime.now(timezone.utc).isoformat(),
               'sql_sha256': cloud['sql_sha256'], 'checks': checks,
+              'derived_calculations': derived,
               'numeric_tolerance': {'absolute': 1e-6, 'relative': 1e-12},
               'note': 'Counts, labels, dates and nulls match exactly; floating results allow numerical rounding.'}
     output = ROOT / 'docs/evidence'
     output.mkdir(parents=True, exist_ok=True)
     (output / 'engine_parity.json').write_text(json.dumps(result, indent=2) + '\n')
-    print(f"Matched {len(checks)} query outputs across local and Snowflake execution.")
+    print(f"Matched {len(checks)} query outputs and {len(derived)} derived scenario files across local and Snowflake execution.")
 
 
 if __name__ == '__main__':

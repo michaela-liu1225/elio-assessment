@@ -1,679 +1,840 @@
 {
   "engine": "snowflake",
-  "generated_at_utc": "2026-11-12T23:43:26.053466Z",
+  "generated_at_utc": "2026-11-13T00:29:40.483411Z",
   "dbt_version": "1.12.7",
-  "invocation_id": "d5fabd33-b1d5-4c10-99b8-1899064b21a1",
-  "elapsed_seconds": 42.61626076698303,
+  "invocation_id": "67bdf85a-054e-4d93-b98d-52763c430495",
+  "elapsed_seconds": 50.00770401954651,
   "status_counts": {
-    "pass": 94,
-    "success": 17
+    "pass": 117,
+    "success": 20
+  },
+  "resource_counts": {
+    "test": 110,
+    "model": 20,
+    "unit_test": 7
   },
   "resources": [
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_category_translation_product_category_name__product_category_name__product_category_name_english.bf2d53615d",
       "status": "pass",
-      "execution_seconds": 0.6143753528594971,
-      "query_id": "01c85f2e-0004-d442-0000-000409629025"
+      "execution_seconds": 0.1309661865234375,
+      "query_id": "01c85f5c-0004-d442-0000-000409629249"
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_customers_customer_id__customer_id__customer_unique_id__customer_zip_code_prefix__customer_city__customer_state.9698ee39ca",
       "status": "pass",
-      "execution_seconds": 0.7386009693145752,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628029"
+      "execution_seconds": 0.2370750904083252,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282a1"
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_order_items_order_id__order_item_id__order_id__order_item_id__product_id__seller_id__shipping_limit_date__price__freight_value.5e522bfa00",
       "status": "pass",
-      "execution_seconds": 0.6893899440765381,
-      "query_id": "01c85f2e-0004-d442-0000-000409629029"
+      "execution_seconds": 0.09249114990234375,
+      "query_id": "01c85f5c-0004-d442-0000-00040962924d"
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_orders_order_id__order_id__customer_id__order_status__order_purchase_timestamp__order_approved_at__order_delivered_carrier_date__order_delivered_customer_date__order_estimated_delivery_date.17304ebe91",
       "status": "pass",
-      "execution_seconds": 0.7400510311126709,
-      "query_id": "01c85f2e-0004-d5a8-0000-00040962802d"
+      "execution_seconds": 0.14614391326904297,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282a5"
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_payments_order_id__payment_sequential__order_id__payment_sequential__payment_type__payment_installments__payment_value.6df329ab56",
       "status": "pass",
-      "execution_seconds": 0.7046253681182861,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628031"
+      "execution_seconds": 0.1468510627746582,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282a9"
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_products_product_id__product_id__product_category_name__product_name_lenght__product_description_lenght__product_photos_qty__product_weight_g__product_length_cm__product_height_cm__product_width_cm.620c91a3cd",
       "status": "pass",
-      "execution_seconds": 0.5399837493896484,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628035"
+      "execution_seconds": 0.11809325218200684,
+      "query_id": "01c85f5c-0004-d442-0000-000409629251"
+    },
+    {
+      "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_reviews_order_id__review_id__review_id__order_id__review_score__review_comment_title__review_comment_message__review_creation_date__review_answer_timestamp.300ccc1211",
+      "status": "pass",
+      "execution_seconds": 0.5453917980194092,
+      "query_id": "01c85f5c-0004-d442-0000-000409629255"
     },
     {
       "unique_id": "model.elio_assessment.stg_category_translation",
       "status": "success",
-      "execution_seconds": 0.3029310703277588,
-      "query_id": "01c85f2e-0004-d442-0000-00040962902d"
+      "execution_seconds": 0.29662632942199707,
+      "query_id": "01c85f5c-0004-d442-0000-000409629259"
     },
     {
       "unique_id": "model.elio_assessment.stg_customers",
       "status": "success",
-      "execution_seconds": 0.20066285133361816,
-      "query_id": "01c85f2e-0004-d442-0000-000409629031"
+      "execution_seconds": 0.23856091499328613,
+      "query_id": "01c85f5c-0004-d442-0000-00040962925d"
     },
     {
       "unique_id": "unit_test.elio_assessment.stg_order_items.malformed_numbers_are_visible_and_item_sequence_is_not_rounded",
       "status": "pass",
-      "execution_seconds": 1.026007890701294,
-      "query_id": "01c85f2e-0004-d442-0000-000409629039"
+      "execution_seconds": 0.9993517398834229,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282b5"
     },
     {
       "unique_id": "model.elio_assessment.stg_order_items",
       "status": "success",
-      "execution_seconds": 0.2661707401275635,
-      "query_id": "01c85f2e-0004-d442-0000-000409629041"
+      "execution_seconds": 0.24626827239990234,
+      "query_id": "01c85f5c-0004-d442-0000-000409629269"
     },
     {
       "unique_id": "model.elio_assessment.stg_orders",
       "status": "success",
-      "execution_seconds": 0.23830509185791016,
-      "query_id": "01c85f2e-0004-d442-0000-000409629045"
+      "execution_seconds": 0.30064988136291504,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282b9"
     },
     {
       "unique_id": "model.elio_assessment.stg_payments",
       "status": "success",
-      "execution_seconds": 0.26229286193847656,
-      "query_id": "01c85f2e-0004-d442-0000-000409629049"
+      "execution_seconds": 0.2610340118408203,
+      "query_id": "01c85f5c-0004-d442-0000-00040962926d"
     },
     {
       "unique_id": "model.elio_assessment.stg_products",
       "status": "success",
-      "execution_seconds": 0.23547697067260742,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628041"
+      "execution_seconds": 0.25898289680480957,
+      "query_id": "01c85f5c-0004-d442-0000-000409629271"
+    },
+    {
+      "unique_id": "model.elio_assessment.stg_reviews",
+      "status": "success",
+      "execution_seconds": 0.21275687217712402,
+      "query_id": "01c85f5c-0004-d442-0000-000409629275"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_category_translation_not__has_parse_error.4140c87897",
       "status": "pass",
-      "execution_seconds": 0.2268228530883789,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628045"
+      "execution_seconds": 0.13388395309448242,
+      "query_id": "01c85f5c-0004-d442-0000-000409629279"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation__loaded_at.4dab7346f0",
       "status": "pass",
-      "execution_seconds": 0.1479806900024414,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628049"
+      "execution_seconds": 0.15994906425476074,
+      "query_id": "01c85f5c-0004-d442-0000-00040962927d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation__source.dc68b6eec5",
       "status": "pass",
-      "execution_seconds": 0.12512707710266113,
-      "query_id": "01c85f2e-0004-d442-0000-00040962904d"
+      "execution_seconds": 0.1189730167388916,
+      "query_id": "01c85f5c-0004-d442-0000-000409629281"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation_category_name.dc441cbb01",
       "status": "pass",
-      "execution_seconds": 0.10866713523864746,
-      "query_id": "01c85f2e-0004-d442-0000-000409629051"
+      "execution_seconds": 0.26819419860839844,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282bd"
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_category_translation_category_name.30a9932d0d",
       "status": "pass",
-      "execution_seconds": 0.1778092384338379,
-      "query_id": "01c85f2e-0004-d442-0000-000409629055"
+      "execution_seconds": 0.13668298721313477,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282c1"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_customers_not__has_parse_error.35c79eb677",
       "status": "pass",
-      "execution_seconds": 0.2704780101776123,
-      "query_id": "01c85f2e-0004-d442-0000-000409629059"
+      "execution_seconds": 0.39092397689819336,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282c5"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers__loaded_at.3c133e1785",
       "status": "pass",
-      "execution_seconds": 0.20199298858642578,
-      "query_id": "01c85f2e-0004-d5a8-0000-00040962804d"
+      "execution_seconds": 0.23383378982543945,
+      "query_id": "01c85f5c-0004-d442-0000-000409629285"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers__source.d0f3975686",
       "status": "pass",
-      "execution_seconds": 0.09610486030578613,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628051"
+      "execution_seconds": 0.13395929336547852,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282c9"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers_customer_id.e2cfb1f9aa",
       "status": "pass",
-      "execution_seconds": 0.1761789321899414,
-      "query_id": "01c85f2e-0004-d442-0000-00040962905d"
+      "execution_seconds": 0.15110182762145996,
+      "query_id": "01c85f5c-0004-d442-0000-000409629289"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers_customer_unique_id.7144461cba",
       "status": "pass",
-      "execution_seconds": 0.1656661033630371,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628055"
+      "execution_seconds": 0.20705890655517578,
+      "query_id": "01c85f5c-0004-d442-0000-00040962928d"
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_customers_customer_id.c7614daada",
       "status": "pass",
-      "execution_seconds": 0.16947388648986816,
-      "query_id": "01c85f2e-0004-d442-0000-000409629061"
+      "execution_seconds": 0.21384406089782715,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282cd"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_not__has_parse_error.d9a4f499e8",
       "status": "pass",
-      "execution_seconds": 0.42071080207824707,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628059"
+      "execution_seconds": 0.5793488025665283,
+      "query_id": "01c85f5c-0004-d442-0000-000409629291"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_price_0_and_freight_value_0_and_order_item_id_1.c98003ab31",
       "status": "pass",
-      "execution_seconds": 0.2837817668914795,
-      "query_id": "01c85f2e-0004-d5a8-0000-00040962805d"
+      "execution_seconds": 0.23667287826538086,
+      "query_id": "01c85f5c-0004-d442-0000-000409629295"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items__loaded_at.29dc7aa4ec",
       "status": "pass",
-      "execution_seconds": 0.11488103866577148,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628061"
+      "execution_seconds": 0.11450982093811035,
+      "query_id": "01c85f5c-0004-d442-0000-000409629299"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items__source.2e2907dbfc",
       "status": "pass",
-      "execution_seconds": 0.1176309585571289,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628065"
+      "execution_seconds": 0.714900016784668,
+      "query_id": "01c85f5c-0004-d5a8-0000-0004096282d1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_order_id.2063801f96",
       "status": "pass",
-      "execution_seconds": 0.13488411903381348,
-      "query_id": "01c85f2e-0004-d442-0000-000409629065"
+      "execution_seconds": 0.12718582153320312,
+      "query_id": "01c85f5c-0004-d442-0000-00040962929d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_order_item_id.26a7e2bc35",
       "status": "pass",
-      "execution_seconds": 0.15526294708251953,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628069"
+      "execution_seconds": 0.14498591423034668,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292a1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_product_id.5154a8a6f6",
       "status": "pass",
-      "execution_seconds": 0.1849372386932373,
-      "query_id": "01c85f2e-0004-d442-0000-000409629069"
+      "execution_seconds": 0.19648408889770508,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292a5"
     },
     {
       "unique_id": "test.elio_assessment.unique_combination_stg_order_items_order_id__order_item_id.32c8146637",
       "status": "pass",
-      "execution_seconds": 0.2157599925994873,
-      "query_id": "01c85f2e-0004-d442-0000-00040962906d"
+      "execution_seconds": 0.23665809631347656,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292a9"
     },
     {
       "unique_id": "test.elio_assessment.accepted_values_stg_orders_order_status__created__approved__invoiced__processing__shipped__delivered__unavailable__canceled.c3ef7d7ae3",
       "status": "pass",
-      "execution_seconds": 0.35080599784851074,
-      "query_id": "01c85f2e-0004-d442-0000-000409629071"
+      "execution_seconds": 0.460773229598999,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282d5"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_orders_not__has_parse_error.92fd041db5",
       "status": "pass",
-      "execution_seconds": 0.48207688331604004,
-      "query_id": "01c85f2e-0004-d5a8-0000-00040962806d"
+      "execution_seconds": 0.5706918239593506,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282d9"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders__loaded_at.9aeaffff63",
       "status": "pass",
-      "execution_seconds": 0.09597015380859375,
-      "query_id": "01c85f2e-0004-d442-0000-000409629075"
+      "execution_seconds": 0.1378040313720703,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282dd"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders__source.18c0c4a2b1",
       "status": "pass",
-      "execution_seconds": 0.20983290672302246,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628071"
+      "execution_seconds": 0.12320613861083984,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282e1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_customer_id.af79d5e4b5",
       "status": "pass",
-      "execution_seconds": 0.2546558380126953,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628075"
+      "execution_seconds": 0.27368903160095215,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282e5"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_order_id.81cfe2fe64",
       "status": "pass",
-      "execution_seconds": 0.19048404693603516,
-      "query_id": "01c85f2e-0004-d442-0000-000409629079"
+      "execution_seconds": 0.14458799362182617,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292ad"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_order_status.d7fcf15f79",
       "status": "pass",
-      "execution_seconds": 0.18384480476379395,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628079"
+      "execution_seconds": 0.3242361545562744,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292b1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_purchased_at.c1efa3edc3",
       "status": "pass",
-      "execution_seconds": 0.17647004127502441,
-      "query_id": "01c85f2e-0004-d442-0000-00040962907d"
+      "execution_seconds": 0.21569204330444336,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282e9"
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_order_items_order_id__order_id__ref_stg_orders_.dbe9930c54",
       "status": "pass",
-      "execution_seconds": 0.3111708164215088,
-      "query_id": "01c85f2e-0004-d442-0000-000409629081"
+      "execution_seconds": 0.3059570789337158,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292b5"
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_orders_customer_id__customer_id__ref_stg_customers_.430bf21500",
       "status": "pass",
-      "execution_seconds": 0.35886406898498535,
-      "query_id": "01c85f2e-0004-d5a8-0000-00040962807d"
+      "execution_seconds": 0.3693711757659912,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282ed"
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_orders_customer_id.f138e21520",
       "status": "pass",
-      "execution_seconds": 0.18224191665649414,
-      "query_id": "01c85f2e-0004-d442-0000-000409629089"
+      "execution_seconds": 0.1817011833190918,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292b9"
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_orders_order_id.e3b841c71a",
       "status": "pass",
-      "execution_seconds": 0.19148588180541992,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628081"
+      "execution_seconds": 0.17137598991394043,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292bd"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_payments_not__has_parse_error.874262ce64",
       "status": "pass",
-      "execution_seconds": 0.3376162052154541,
-      "query_id": "01c85f2e-0004-d442-0000-00040962908d"
+      "execution_seconds": 0.45474982261657715,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292c1"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_payments_payment_value_0_and_payment_sequence_1_and_installment_count_0.0574fdf339",
       "status": "pass",
-      "execution_seconds": 0.2176361083984375,
-      "query_id": "01c85f2e-0004-d442-0000-000409629091"
+      "execution_seconds": 0.21144914627075195,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292c5"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_payments__loaded_at.5b5341387d",
       "status": "pass",
-      "execution_seconds": 0.1349489688873291,
-      "query_id": "01c85f2e-0004-d5a8-0000-000409628085"
+      "execution_seconds": 0.17284107208251953,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292c9"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_payments__source.d6eb7fb2d1",
       "status": "pass",
-      "execution_seconds": 0.09343409538269043,
-      "query_id": "01c85f2f-0004-d442-0000-000409629095"
+      "execution_seconds": 0.09728693962097168,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292cd"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_payments_order_id.601cf57649",
       "status": "pass",
-      "execution_seconds": 0.13240289688110352,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628089"
+      "execution_seconds": 0.1755378246307373,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282f1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_payments_payment_sequence.709f195f9b",
       "status": "pass",
-      "execution_seconds": 0.14130592346191406,
-      "query_id": "01c85f2f-0004-d5a8-0000-00040962808d"
+      "execution_seconds": 0.11737799644470215,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292d1"
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_payments_order_id__order_id__ref_stg_orders_.8426a3f3d3",
       "status": "pass",
-      "execution_seconds": 0.3466060161590576,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628091"
+      "execution_seconds": 0.2722501754760742,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292d5"
     },
     {
       "unique_id": "test.elio_assessment.unique_combination_stg_payments_order_id__payment_sequence.0163cb23f5",
       "status": "pass",
-      "execution_seconds": 0.1938331127166748,
-      "query_id": "01c85f2f-0004-d442-0000-000409629099"
+      "execution_seconds": 0.20809388160705566,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292d9"
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_products_not__has_parse_error.a9f7135440",
       "status": "pass",
-      "execution_seconds": 0.3364098072052002,
-      "query_id": "01c85f2f-0004-d442-0000-00040962909d"
+      "execution_seconds": 0.47052717208862305,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282f5"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_products__loaded_at.83bb4b6ede",
       "status": "pass",
-      "execution_seconds": 0.14992094039916992,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628095"
+      "execution_seconds": 0.12296009063720703,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292dd"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_products__source.df1c7c814a",
       "status": "pass",
-      "execution_seconds": 0.2149050235748291,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628099"
+      "execution_seconds": 0.14342713356018066,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282f9"
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_products_product_id.6373b0acf3",
       "status": "pass",
-      "execution_seconds": 0.13846707344055176,
-      "query_id": "01c85f2f-0004-d5a8-0000-00040962809d"
+      "execution_seconds": 0.13934898376464844,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292e1"
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_order_items_product_id__product_id__ref_stg_products_.886a82c26c",
       "status": "pass",
-      "execution_seconds": 0.3804788589477539,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290a1"
+      "execution_seconds": 0.4017651081085205,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096282fd"
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_products_product_id.7d950a1467",
       "status": "pass",
-      "execution_seconds": 0.13690495491027832,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290a5"
+      "execution_seconds": 0.16573309898376465,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292e5"
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_reviews_not__has_parse_error_and_review_score_between_1_and_5_and_review_answered_at_review_created_at.1f3b0ac221",
+      "status": "pass",
+      "execution_seconds": 0.47094202041625977,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292e9"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews__loaded_at.bed4875cee",
+      "status": "pass",
+      "execution_seconds": 0.11285018920898438,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292ed"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews__source.bb79460134",
+      "status": "pass",
+      "execution_seconds": 0.1023569107055664,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292f1"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_order_id.da21bf836d",
+      "status": "pass",
+      "execution_seconds": 0.12691187858581543,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292f5"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_review_id.943b8fc3e4",
+      "status": "pass",
+      "execution_seconds": 0.1367509365081787,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292f9"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_review_score.0e48fbb0d1",
+      "status": "pass",
+      "execution_seconds": 0.1726980209350586,
+      "query_id": "01c85f5d-0004-d442-0000-0004096292fd"
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_stg_reviews_order_id__order_id__ref_stg_orders_.0d244d7444",
+      "status": "pass",
+      "execution_seconds": 0.4787282943725586,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628301"
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_combination_stg_reviews_order_id__review_id.68fc40547b",
+      "status": "pass",
+      "execution_seconds": 0.2539021968841553,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628305"
     },
     {
       "unique_id": "model.elio_assessment.int_customers",
       "status": "success",
-      "execution_seconds": 0.200944185256958,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290a9"
+      "execution_seconds": 0.26926612854003906,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628309"
     },
     {
       "unique_id": "model.elio_assessment.int_order_customers",
       "status": "success",
-      "execution_seconds": 0.6007423400878906,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280a1"
+      "execution_seconds": 0.2577810287475586,
+      "query_id": "01c85f5d-0004-d442-0000-000409629301"
     },
     {
       "unique_id": "model.elio_assessment.int_categories",
       "status": "success",
-      "execution_seconds": 0.22951292991638184,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290ad"
+      "execution_seconds": 0.39893579483032227,
+      "query_id": "01c85f5d-0004-d442-0000-000409629305"
+    },
+    {
+      "unique_id": "unit_test.elio_assessment.int_order_reviews.first_review_preserves_order_grain_and_excludes_future_responses",
+      "status": "pass",
+      "execution_seconds": 1.0338139533996582,
+      "query_id": "01c85f5d-0004-d442-0000-000409629315"
+    },
+    {
+      "unique_id": "model.elio_assessment.int_order_reviews",
+      "status": "success",
+      "execution_seconds": 0.24942493438720703,
+      "query_id": "01c85f5d-0004-d442-0000-000409629319"
     },
     {
       "unique_id": "test.elio_assessment.not_null_int_customers_customer_unique_id.1169872bd0",
       "status": "pass",
-      "execution_seconds": 0.2755739688873291,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280a5"
+      "execution_seconds": 0.22339701652526855,
+      "query_id": "01c85f5d-0004-d442-0000-00040962931d"
     },
     {
       "unique_id": "test.elio_assessment.unique_int_customers_customer_unique_id.0139cca6ab",
       "status": "pass",
-      "execution_seconds": 0.32640886306762695,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290b1"
+      "execution_seconds": 0.27919697761535645,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628311"
     },
     {
       "unique_id": "test.elio_assessment.not_null_int_order_customers_customer_id.c4e8b5d5ae",
       "status": "pass",
-      "execution_seconds": 0.19582486152648926,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280a9"
+      "execution_seconds": 0.19060921669006348,
+      "query_id": "01c85f5d-0004-d442-0000-000409629321"
     },
     {
       "unique_id": "test.elio_assessment.unique_int_order_customers_customer_id.fd02a9c004",
       "status": "pass",
-      "execution_seconds": 0.19690394401550293,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280ad"
+      "execution_seconds": 0.25836610794067383,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628315"
     },
     {
       "unique_id": "test.elio_assessment.category_coverage",
       "status": "pass",
-      "execution_seconds": 0.6692259311676025,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280b1"
+      "execution_seconds": 0.3623380661010742,
+      "query_id": "01c85f5d-0004-d442-0000-000409629325"
     },
     {
       "unique_id": "test.elio_assessment.not_null_int_categories_category_name.bdd3eca1be",
       "status": "pass",
-      "execution_seconds": 0.2527191638946533,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290b5"
+      "execution_seconds": 0.21808791160583496,
+      "query_id": "01c85f5d-0004-d442-0000-000409629329"
     },
     {
       "unique_id": "test.elio_assessment.unique_int_categories_category_name.54b62d7aff",
       "status": "pass",
-      "execution_seconds": 0.33490490913391113,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280b5"
+      "execution_seconds": 0.2637021541595459,
+      "query_id": "01c85f5d-0004-d442-0000-00040962932d"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_int_order_reviews_order_id.9983d35aba",
+      "status": "pass",
+      "execution_seconds": 0.19435524940490723,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628319"
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_int_order_reviews_order_id__order_id__ref_stg_orders_.2cfcda8721",
+      "status": "pass",
+      "execution_seconds": 0.5490541458129883,
+      "query_id": "01c85f5d-0004-d442-0000-000409629331"
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_int_order_reviews_order_id.53079d172d",
+      "status": "pass",
+      "execution_seconds": 0.3614768981933594,
+      "query_id": "01c85f5d-0004-d442-0000-000409629335"
     },
     {
       "unique_id": "model.elio_assessment.dim_customer",
       "status": "success",
-      "execution_seconds": 0.9525661468505859,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280b9"
+      "execution_seconds": 1.051706075668335,
+      "query_id": "01c85f5d-0004-d442-0000-000409629339"
     },
     {
       "unique_id": "model.elio_assessment.dim_product",
       "status": "success",
-      "execution_seconds": 2.4539148807525635,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280bd"
+      "execution_seconds": 0.8743700981140137,
+      "query_id": "01c85f5d-0004-d442-0000-00040962933d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_customer_customer_sk.69b9dd095b",
       "status": "pass",
-      "execution_seconds": 0.19799494743347168,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280c1"
+      "execution_seconds": 0.259232759475708,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962831d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_customer_customer_unique_id.0020205ea4",
       "status": "pass",
-      "execution_seconds": 0.23389196395874023,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290b9"
+      "execution_seconds": 0.17532610893249512,
+      "query_id": "01c85f5d-0004-d442-0000-000409629341"
     },
     {
       "unique_id": "test.elio_assessment.unique_dim_customer_customer_sk.c225f6f263",
       "status": "pass",
-      "execution_seconds": 0.1448838710784912,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280c5"
+      "execution_seconds": 0.1609489917755127,
+      "query_id": "01c85f5d-0004-d442-0000-000409629345"
     },
     {
       "unique_id": "test.elio_assessment.unique_dim_customer_customer_unique_id.6d479619c1",
       "status": "pass",
-      "execution_seconds": 0.13983416557312012,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280c9"
+      "execution_seconds": 0.24078583717346191,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628321"
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_product_product_id.02b1f06816",
       "status": "pass",
-      "execution_seconds": 0.25340914726257324,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280cd"
+      "execution_seconds": 0.20220232009887695,
+      "query_id": "01c85f5d-0004-d442-0000-000409629349"
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_product_product_sk.271feb5417",
       "status": "pass",
-      "execution_seconds": 0.10755014419555664,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280d1"
+      "execution_seconds": 0.12517309188842773,
+      "query_id": "01c85f5d-0004-d442-0000-00040962934d"
     },
     {
       "unique_id": "test.elio_assessment.unique_dim_product_product_id.46495bf7fe",
       "status": "pass",
-      "execution_seconds": 0.11393499374389648,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280d5"
+      "execution_seconds": 0.14065098762512207,
+      "query_id": "01c85f5d-0004-d442-0000-000409629351"
     },
     {
       "unique_id": "test.elio_assessment.unique_dim_product_product_sk.2248c4335c",
       "status": "pass",
-      "execution_seconds": 0.1668548583984375,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290bd"
+      "execution_seconds": 0.23466086387634277,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628325"
     },
     {
       "unique_id": "unit_test.elio_assessment.fct_orders.payments_do_not_multiply_items_and_missing_is_not_zero",
       "status": "pass",
-      "execution_seconds": 1.464076042175293,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280e5"
+      "execution_seconds": 2.4944958686828613,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962832d"
     },
     {
       "unique_id": "model.elio_assessment.fct_orders",
       "status": "success",
-      "execution_seconds": 1.4540092945098877,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290d5"
+      "execution_seconds": 1.8545122146606445,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628335"
     },
     {
       "unique_id": "model.elio_assessment.fct_order_items",
       "status": "success",
-      "execution_seconds": 1.1409857273101807,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290d9"
+      "execution_seconds": 1.4817850589752197,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628339"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_orders_customer_sk.670251d545",
       "status": "pass",
-      "execution_seconds": 0.1384599208831787,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290dd"
+      "execution_seconds": 0.21356892585754395,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962833d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_orders_order_id.4e687af8d0",
       "status": "pass",
-      "execution_seconds": 0.23924493789672852,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280e9"
+      "execution_seconds": 0.1600792407989502,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628341"
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_orders_customer_sk__customer_sk__ref_dim_customer_.4ac8b5d43f",
       "status": "pass",
-      "execution_seconds": 0.22537899017333984,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290e1"
+      "execution_seconds": 0.22677898406982422,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628345"
     },
     {
       "unique_id": "test.elio_assessment.unique_fct_orders_order_id.523ddb6ce5",
       "status": "pass",
-      "execution_seconds": 0.16871905326843262,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280ed"
+      "execution_seconds": 0.13663506507873535,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628349"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_customer_sk.45f21cac3d",
       "status": "pass",
-      "execution_seconds": 0.17055702209472656,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280f1"
+      "execution_seconds": 0.26579976081848145,
+      "query_id": "01c85f5d-0004-d442-0000-00040962936d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_order_id.e887a2de02",
       "status": "pass",
-      "execution_seconds": 0.08921599388122559,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280f5"
+      "execution_seconds": 0.24156594276428223,
+      "query_id": "01c85f5d-0004-d442-0000-000409629371"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_order_item_sk.b672ac3d78",
       "status": "pass",
-      "execution_seconds": 0.12053990364074707,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290e5"
+      "execution_seconds": 0.13532114028930664,
+      "query_id": "01c85f5d-0004-d442-0000-000409629375"
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_product_sk.2a0669cda9",
       "status": "pass",
-      "execution_seconds": 0.08931922912597656,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280f9"
+      "execution_seconds": 0.24637889862060547,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962834d"
     },
     {
       "unique_id": "test.elio_assessment.order_and_item_conservation",
       "status": "pass",
-      "execution_seconds": 0.5708339214324951,
-      "query_id": "01c85f2f-0004-d5a8-0000-0004096280fd"
+      "execution_seconds": 0.5039699077606201,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628351"
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_order_items_customer_sk__customer_sk__ref_dim_customer_.3da3593b7e",
       "status": "pass",
-      "execution_seconds": 0.18094801902770996,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290e9"
+      "execution_seconds": 0.19473624229431152,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628355"
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_order_items_order_id__order_id__ref_fct_orders_.f1e7dbc0ec",
       "status": "pass",
-      "execution_seconds": 0.19768595695495605,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628101"
+      "execution_seconds": 0.2918550968170166,
+      "query_id": "01c85f5d-0004-d442-0000-000409629379"
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_order_items_product_sk__product_sk__ref_dim_product_.04e628e7c6",
       "status": "pass",
-      "execution_seconds": 0.18771886825561523,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628105"
+      "execution_seconds": 0.19544482231140137,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628359"
     },
     {
       "unique_id": "test.elio_assessment.unique_fct_order_items_order_item_sk.dafcd51e85",
       "status": "pass",
-      "execution_seconds": 0.12076306343078613,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628109"
+      "execution_seconds": 0.13911795616149902,
+      "query_id": "01c85f5d-0004-d442-0000-00040962937d"
     },
     {
       "unique_id": "unit_test.elio_assessment.int_purchase_occasions.same_day_orders_form_one_purchase_occasion",
       "status": "pass",
-      "execution_seconds": 0.8556396961212158,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290f1"
+      "execution_seconds": 0.9108719825744629,
+      "query_id": "01c85f5d-0004-d442-0000-000409629389"
     },
     {
       "unique_id": "model.elio_assessment.int_purchase_occasions",
       "status": "success",
-      "execution_seconds": 0.2878079414367676,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628119"
+      "execution_seconds": 0.3325920104980469,
+      "query_id": "01c85f5d-0004-d442-0000-000409629391"
+    },
+    {
+      "unique_id": "unit_test.elio_assessment.mart_delivery_risk.dispatch_trigger_boundaries_missing_inputs_and_snapshot_cancellation",
+      "status": "pass",
+      "execution_seconds": 1.9156429767608643,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628361"
+    },
+    {
+      "unique_id": "model.elio_assessment.mart_delivery_risk",
+      "status": "success",
+      "execution_seconds": 1.4151718616485596,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628369"
     },
     {
       "unique_id": "unit_test.elio_assessment.mart_customer_retention.sixty_day_boundary_and_immature_customers",
       "status": "pass",
-      "execution_seconds": 1.7446327209472656,
-      "query_id": "01c85f2f-0004-d442-0000-0004096290fd"
+      "execution_seconds": 1.3687551021575928,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628375"
     },
     {
       "unique_id": "model.elio_assessment.mart_customer_retention",
       "status": "success",
-      "execution_seconds": 1.0853378772735596,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628129"
+      "execution_seconds": 0.9581527709960938,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293b5"
+    },
+    {
+      "unique_id": "test.elio_assessment.delivery_risk_conservation",
+      "status": "pass",
+      "execution_seconds": 0.2709197998046875,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962837d"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_awaiting_handoff_at_trigger.6d44b8f1d3",
+      "status": "pass",
+      "execution_seconds": 0.21599817276000977,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293b9"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_has_mature_delivery_window.332a95bd2f",
+      "status": "pass",
+      "execution_seconds": 0.0845339298248291,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293bd"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_has_valid_dispatch_context.3726dd3795",
+      "status": "pass",
+      "execution_seconds": 0.2735309600830078,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628381"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_is_historical_alert.8fc97e8677",
+      "status": "pass",
+      "execution_seconds": 0.08101987838745117,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293c1"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_observed_delivered_by_cutoff.5a94bbada1",
+      "status": "pass",
+      "execution_seconds": 0.13039302825927734,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293c5"
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_order_id.41450713d7",
+      "status": "pass",
+      "execution_seconds": 0.12229704856872559,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628385"
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_mart_delivery_risk_order_id__order_id__ref_fct_orders_.5501d6359e",
+      "status": "pass",
+      "execution_seconds": 0.206984281539917,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628389"
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_mart_delivery_risk_order_id.4f5d6135aa",
+      "status": "pass",
+      "execution_seconds": 0.11706805229187012,
+      "query_id": "01c85f5d-0004-d5a8-0000-00040962838d"
     },
     {
       "unique_id": "test.elio_assessment.not_null_mart_customer_retention_customer_sk.816b6edb5e",
       "status": "pass",
-      "execution_seconds": 0.16945981979370117,
-      "query_id": "01c85f2f-0004-d5a8-0000-00040962812d"
+      "execution_seconds": 0.3305931091308594,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628391"
     },
     {
       "unique_id": "test.elio_assessment.relationships_mart_customer_retention_customer_sk__customer_sk__ref_dim_customer_.eff8c71460",
       "status": "pass",
-      "execution_seconds": 0.23020410537719727,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628131"
+      "execution_seconds": 0.2343900203704834,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628395"
     },
     {
       "unique_id": "test.elio_assessment.retention_window_integrity",
       "status": "pass",
-      "execution_seconds": 0.19014620780944824,
-      "query_id": "01c85f2f-0004-d442-0000-000409629105"
+      "execution_seconds": 0.2084178924560547,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293c9"
     },
     {
       "unique_id": "test.elio_assessment.unique_mart_customer_retention_customer_sk.4d933bf580",
       "status": "pass",
-      "execution_seconds": 0.1114358901977539,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628135"
+      "execution_seconds": 0.13508892059326172,
+      "query_id": "01c85f5d-0004-d5a8-0000-000409628399"
     },
     {
       "unique_id": "unit_test.elio_assessment.mart_activation_candidates.audience_excludes_inflight_orders_but_ignores_future_purchases",
       "status": "pass",
-      "execution_seconds": 1.0392539501190186,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628141"
+      "execution_seconds": 1.1215548515319824,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293dd"
     },
     {
       "unique_id": "model.elio_assessment.mart_activation_candidates",
       "status": "success",
-      "execution_seconds": 0.7749638557434082,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628149"
+      "execution_seconds": 0.6832902431488037,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293e1"
     },
     {
       "unique_id": "model.elio_assessment.mart_activation_history",
       "status": "success",
-      "execution_seconds": 1.1592140197753906,
-      "query_id": "01c85f2f-0004-d442-0000-000409629111"
+      "execution_seconds": 0.831186056137085,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293e5"
     },
     {
       "unique_id": "test.elio_assessment.not_null_mart_activation_candidates_customer_sk.ab006fe758",
       "status": "pass",
-      "execution_seconds": 0.18697595596313477,
-      "query_id": "01c85f2f-0004-d442-0000-000409629115"
+      "execution_seconds": 0.1567239761352539,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293e9"
     },
     {
       "unique_id": "test.elio_assessment.relationships_mart_activation_candidates_customer_sk__customer_sk__ref_dim_customer_.773d4cedfe",
       "status": "pass",
-      "execution_seconds": 0.191331148147583,
-      "query_id": "01c85f2f-0004-d442-0000-000409629119"
+      "execution_seconds": 0.20060396194458008,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293ed"
     },
     {
       "unique_id": "test.elio_assessment.unique_mart_activation_candidates_customer_sk.6009589423",
       "status": "pass",
-      "execution_seconds": 0.24908804893493652,
-      "query_id": "01c85f2f-0004-d5a8-0000-00040962814d"
+      "execution_seconds": 0.13259601593017578,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293f1"
     },
     {
       "unique_id": "test.elio_assessment.not_null_mart_activation_history_customer_sk.871731babb",
       "status": "pass",
-      "execution_seconds": 0.17403101921081543,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628151"
+      "execution_seconds": 0.9898202419281006,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096283a1"
     },
     {
       "unique_id": "test.elio_assessment.relationships_mart_activation_history_customer_sk__customer_sk__ref_dim_customer_.d146179295",
       "status": "pass",
-      "execution_seconds": 0.22427010536193848,
-      "query_id": "01c85f2f-0004-d5a8-0000-000409628155"
+      "execution_seconds": 0.33572888374328613,
+      "query_id": "01c85f5d-0004-d5a8-0000-0004096283a5"
     },
     {
       "unique_id": "test.elio_assessment.unique_mart_activation_history_customer_sk.e220acd1e1",
       "status": "pass",
-      "execution_seconds": 0.1605548858642578,
-      "query_id": "01c85f2f-0004-d442-0000-00040962911d"
+      "execution_seconds": 0.19534802436828613,
+      "query_id": "01c85f5d-0004-d442-0000-0004096293f5"
     }
   ]
 }

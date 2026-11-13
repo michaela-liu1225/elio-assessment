@@ -126,6 +126,28 @@
           null
         ]
       ]
+    },
+    {
+      "file": "olist_order_reviews_dataset.csv",
+      "rows": 99224,
+      "bytes": 14451670,
+      "sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7",
+      "status": "loaded",
+      "copy_result": [
+        [
+          "olist_stage/012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7/olist_order_reviews_dataset.csv.gz",
+          "LOADED",
+          99224,
+          99224,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
     }
-  ]
+  ],
+  "note": "Successful per-file COPY evidence from initial six-file run on 2026-11-12 and reviews extension on 2026-11-13; not a claim that all seven were reloaded together."
 }
