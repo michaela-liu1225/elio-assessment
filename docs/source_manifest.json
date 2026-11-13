@@ -31,6 +31,12 @@
       "sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0"
     },
     {
+      "file": "olist_order_reviews_dataset.csv",
+      "rows": 99224,
+      "bytes": 14451670,
+      "sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7"
+    },
+    {
       "file": "product_category_name_translation.csv",
       "rows": 71,
       "bytes": 2613,

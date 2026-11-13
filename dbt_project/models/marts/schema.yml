@@ -286,3 +286,94 @@ models:
   - name: analysis_cutoff
     description: Explicit historical observation date, independent of the execution
       date.
+- name: mart_delivery_risk
+  description: Order-grain historical dispatch rule with separately labelled outcomes and review
+    sensitivity; no causal or live-queue claim.
+  columns:
+  - name: order_id
+    description: One row per original order; all statuses retained, including orders with no dispatch
+      context.
+    data_tests:
+    - not_null
+    - unique
+    - relationships:
+        arguments:
+          to: ref('fct_orders')
+          field: order_id
+  - name: seller_id
+    description: Single seller when seller_count is one; otherwise lexical minimum, never an attribution
+      claim.
+  - name: seller_count
+    description: Distinct sellers across items; multi-seller orders excluded from the dispatch rule.
+  - name: delivery_state
+    description: Order-time destination state; useful for stratification, not causal attribution.
+  - name: order_status
+    description: Final snapshot status, not status at trigger time. Used only for current-state worklist
+      suppression.
+  - name: purchased_at
+    description: Source purchase timestamp; timezone unspecified.
+  - name: purchase_date
+    description: Calendar purchase date used for delivery-experience cohort reporting.
+  - name: approved_at
+    description: Source approval timestamp; must exist before the dispatch trigger.
+  - name: shipping_deadline_at
+    description: Earliest item shipping deadline, only usable when every item has a deadline and
+      seller.
+  - name: trigger_at
+    description: Shipping deadline plus 24 hours, a stated grace-period policy rather than a learned
+      threshold.
+  - name: trigger_date
+    description: Calendar trigger date used to compare quarterly opportunity volumes.
+  - name: estimated_delivery_date
+    description: Promised calendar date; at least two days of lead required at trigger.
+  - name: carrier_received_at
+    description: Order-level carrier handover timestamp; does not identify parcel or seller responsibility.
+  - name: delivered_at
+    description: Eventual observed delivery timestamp; an outcome, never a future predictor.
+  - name: merchandise_gmv
+    description: Order merchandise amount excluding freight; not revenue, profit or avoidable loss.
+  - name: has_valid_dispatch_context
+    description: Known single seller, complete item deadlines, valid approval and at least two days
+      of promise lead.
+    data_tests:
+    - not_null
+  - name: awaiting_handoff_at_trigger
+    description: No carrier or delivery event at or before trigger. Reconstructed from event timestamps,
+      not an event-arrival log.
+    data_tests:
+    - not_null
+  - name: is_historical_alert
+    description: Dispatch context and missing handover at trigger; can include already-canceled orders
+      because cancellation times are absent.
+    data_tests:
+    - not_null
+  - name: has_mature_delivery_window
+    description: Promised date plus 30 calendar days is on or before analysis cutoff; a fixed observation
+      rule.
+    data_tests:
+    - not_null
+  - name: observed_delivered_by_cutoff
+    description: Final delivered status and a valid delivery timestamp no later than cutoff; conditioning
+      on this can bias outcomes.
+    data_tests:
+    - not_null
+  - name: is_late
+    description: Final delivery after the promised date from fct_orders; NULL if unassessable.
+  - name: handed_over_next_48h
+    description: Handover strictly after trigger and at or before trigger plus 48 hours; NULL outside
+      eligible observed windows.
+  - name: first_review_score
+    description: First valid response by cutoff, 1 to 5; NULL for no observed response. Not a financial
+      outcome.
+  - name: latest_review_score
+    description: Latest valid response by cutoff for sensitivity; never an eligibility input.
+  - name: first_review_answered_at
+    description: First response time; some responses precede delivery and therefore are not post-delivery
+      satisfaction.
+  - name: review_record_count
+    description: Observed review/order pairs through cutoff; multiple responses do not multiply order
+      amounts.
+  - name: review_before_delivery
+    description: Whether first response precedes actual delivery; NULL if either event is absent.
+  - name: analysis_cutoff
+    description: Fixed historical observation date, independent of the execution date.

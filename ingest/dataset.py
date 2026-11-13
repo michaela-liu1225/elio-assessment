@@ -21,6 +21,9 @@ TABLES = {
     'payments': ('olist_order_payments_dataset.csv', [
         'order_id', 'payment_sequential', 'payment_type',
         'payment_installments', 'payment_value']),
+    'reviews': ('olist_order_reviews_dataset.csv', [
+        'review_id', 'order_id', 'review_score', 'review_comment_title',
+        'review_comment_message', 'review_creation_date', 'review_answer_timestamp']),
     'category_translation': ('product_category_name_translation.csv', [
         'product_category_name', 'product_category_name_english']),
 }

@@ -2,7 +2,7 @@
 
 ## Scope and grain
 
-Six publisher files are used: customers, orders, order items, products, payments and category translation. Reviews, sellers and geolocation are not required for this question. Seller IDs are retained on item facts without inventing unavailable seller attributes. No ZIP-to-city dependency is assumed: a postal prefix is not a unique location identifier.
+Seven publisher files are used: customers, orders, order items, products, payments, reviews and category translation. Reviews support delivery-experience validation; seller attributes and geolocation are unnecessary for the selected rule. Seller IDs are retained on item facts without inventing unavailable seller attributes. No ZIP-to-city dependency is assumed: a postal prefix is not a unique location identifier.
 
 ```mermaid
 erDiagram
@@ -12,6 +12,7 @@ erDiagram
     PRODUCTS ||--o{ ORDER_ITEMS : purchased_as
     CATEGORY ||--o{ PRODUCTS : classifies
     ORDERS ||--o{ PAYMENTS : paid_with
+    ORDERS ||--o{ REVIEWS : receives
     CUSTOMER {
         varchar customer_unique_id PK
     }
@@ -48,6 +49,12 @@ erDiagram
         varchar category_name PK
         varchar category_name_english
     }
+    REVIEWS {
+        varchar order_id PK,FK
+        varchar review_id PK
+        integer review_score
+        timestamp_ntz review_answered_at
+    }
     PAYMENTS {
         varchar order_id PK,FK
         integer payment_sequence PK
@@ -57,11 +64,11 @@ erDiagram
     }
 ```
 
-The CUSTOMER entity is implemented by `int_customers`; ORDER_CUSTOMER_CONTEXT by `int_order_customers`; CATEGORY by `int_categories`; the remaining conformed entities are `stg_orders`, `stg_order_items`, `stg_products` and `stg_payments`. The nullable product category maps to the explicit `__unknown__` category at the conformed-to-mart boundary. Publisher category translations without products need not create unused dimension members.
+The CUSTOMER entity is implemented by `int_customers`; ORDER_CUSTOMER_CONTEXT by `int_order_customers`; CATEGORY by `int_categories`; the remaining conformed entities are `stg_orders`, `stg_order_items`, `stg_products`, `stg_payments` and `stg_reviews`. The nullable product category maps to the explicit `__unknown__` category at the conformed-to-mart boundary. Publisher category translations without products need not create unused dimension members.
 
 ## Normalisation reasoning (five sentences)
 
-Stable customer identity is separated from the order-specific customer/address context so moving house does not rewrite earlier order geography. Order-item records resolve the many-to-many relationship between orders and products, with `(order_id, order_item_id)` identifying an item rather than an assumed quantity. Payments remain a separate child entity keyed by `(order_id, payment_sequence)`, so multiple tender records cannot multiply product amounts. Product properties depend on the product key while translated labels depend on the category key, keeping those attributes separate in the conformed layer. The marts deliberately flatten category labels into `dim_product` and aggregate items/payments independently into `fct_orders` to make stakeholder queries simple while retaining the two explicit fact grains.
+Stable customer identity is separated from the order-specific customer/address context so moving house does not rewrite earlier order geography. Order-item records resolve the many-to-many relationship between orders and products, with `(order_id, order_item_id)` identifying an item rather than an assumed quantity. Payments and reviews remain separate child entities keyed by `(order_id, payment_sequence)` and `(order_id, review_id)`, so multiple records cannot multiply product amounts; review_id alone is not unique in this source. Product properties depend on the product key while translated labels depend on the category key, keeping those attributes separate in the conformed layer. The marts deliberately flatten category labels into `dim_product` and aggregate items/payments independently into `fct_orders` to make stakeholder queries simple while retaining the two explicit fact grains.
 
 ## Star schema and downstream summaries
 
@@ -83,6 +90,8 @@ erDiagram
 | `mart_customer_retention` | One customer; first/second observed shopping date and cohort-maturity flag |
 | `mart_activation_history` | One historical eligible customer at delivery +30 days, with a full subsequent 30-day window |
 | `mart_activation_candidates` | One illustrative historical audience member at the explicit cutoff |
+| `int_order_reviews` | One order, first response by cutoff, latest response for sensitivity and observed response count |
+| `mart_delivery_risk` | One source order, dispatch context and historical trigger flag, separately labelled delivery/review outcomes |
 
 The two facts must not be joined and then summed indiscriminately: repeating an order-level total at item grain reintroduces fanout. Analytics use the fact appropriate to the question. MD5 keys are stable identifiers, not a privacy or encryption mechanism; uniqueness and relationship tests protect the model's assumptions.
 
@@ -107,3 +116,11 @@ Snowflake standard-table primary/foreign-key declarations do not provide the gua
 The default analysis cutoff is **2018-08-31**; the tiny September/October tail is retained in facts and coverage reports but excluded from behavioural claims. First purchase means **first observed delivered purchase**, not lifetime acquisition. Cohorts need 60 full days of observation; partial mature calendar months are omitted from the trend. Same-day shopping is conservatively one occasion, and one person across separate marketplace identities may still appear as multiple customers.
 
 Order statuses and product attributes are final snapshots. The retention metric describes orders placed within the window that eventually appear as delivered, not an exact reconstruction of what an operator knew each historical day. Campaign eligibility is therefore illustrative; production must re-evaluate current order state, consent, contactability and complaints immediately before sending. The 30-60-day backlog audience is older than the historical day-30 landmark cohort, so that baseline is a planning proxy, not an unbiased forecast of the backlog response.
+
+## Dispatch decision boundaries
+
+The dispatch trigger is the earliest item shipping deadline plus 24 hours, with one seller, every item carrying a seller/deadline, valid approval before the trigger, and at least two days until the promise date. A carrier handover exactly at the trigger suppresses the alert; one exactly 48 hours after the trigger counts as a subsequent handover. Missing items, partial deadlines, unknown sellers, invalid chronology and multi-seller attribution are excluded rather than imputed. Future review scores and late-delivery outcomes do not determine the trigger.
+
+`is_historical_alert` reconstructs missing handover from event timestamps. It does not establish when those events arrived or whether the order had already been canceled, because cancellation and deadline revision histories are absent. Consequently it can include final canceled orders. `sql/dispatch_worklist.sql` is a separate current-snapshot integration reference: it suppresses final canceled/delivered states, actual handover/delivery timestamps and stale backlog. Current source freshness, order payment/approval, action deduplication and cancellation must be rechecked atomically before sending a task; this extract is not a live task feed.
+
+Outcomes require promised date +30 days by cutoff, observed delivery by cutoff and known timeliness. All-status workload is reported separately and charged in economics; missing/non-delivered outcomes never silently become on-time deliveries. First review is selected by response timestamp then review_id, avoiding response fanout; latest review supports sensitivity. A response may precede actual delivery, so it is not automatically a post-delivery score. Comment text is retained only in RAW.
