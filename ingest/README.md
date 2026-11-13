@@ -1,8 +1,8 @@
 # Ingestion decisions and manual steps
 
-`dataset.py` specifies six exact files and headers. Before any warehouse write, the loader checks UTF-8 (including an optional BOM), CSV quoting and exact record widths. Portuguese text is preserved. The category-translation file has a UTF-8 BOM, handled by the parser/file format rather than by modifying source files.
+`dataset.py` specifies seven exact files and headers. Before any warehouse write, the loader checks UTF-8 (including an optional BOM), CSV quoting and exact record widths. Portuguese text is preserved. The category-translation file has a UTF-8 BOM, handled by the parser/file format rather than by modifying source files.
 
-Recorded counts and SHA-256 hashes are in `docs/source_manifest.json`: 99,441 orders, 112,650 items, 99,441 customer contexts, 32,951 products, 103,886 payments and 71 translations. Preflight found no structurally malformed record in these six files. This does not mean their business values are all complete or consistent.
+Recorded counts and SHA-256 hashes are in `docs/source_manifest.json`: 99,441 orders, 112,650 items, 99,441 customer contexts, 32,951 products, 103,886 payments, 99,224 review/order pairs and 71 translations. Preflight found no structurally malformed record in these seven files. This does not mean their business values are all complete or consistent.
 
 ## Snowflake operations
 
@@ -28,4 +28,6 @@ This is a serial single-writer batch loader. Concurrent runs require orchestrati
 
 ## Manual steps and execution evidence
 
-The owner completes trial activation and authentication. Configure the README's environment variables and ignored profile; no credential belongs in source. All six files were loaded successfully on Snowflake; COPY results, actual build/query IDs and rerun evidence are recorded in `docs/evidence/`. See `docs/verification.md` for the exact verified scope.
+The owner completes trial activation and authentication. Configure the README's environment variables and ignored profile; no credential belongs in source. All seven files were loaded successfully on Snowflake; COPY results, actual build/query IDs and rerun evidence are recorded in `docs/evidence/`. See `docs/verification.md` for the exact verified scope.
+
+Review comments can contain sensitive text despite anonymised identifiers. They are preserved as supplied in RAW, but are not selected into staging/mart outputs or LLM inputs. Production RAW access needs an appropriate restricted role and retention policy. Embedded newlines and quotes in reviews are parsed as CSV records, not split into physical lines.

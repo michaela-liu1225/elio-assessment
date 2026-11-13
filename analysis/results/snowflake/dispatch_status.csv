@@ -1,0 +1,6 @@
+order_status,proxy_alerts,assessable_delivered_orders,handovers_next_48h
+canceled,48,0,0
+delivered,566,563,250
+invoiced,44,0,0
+processing,14,0,0
+shipped,7,0,2

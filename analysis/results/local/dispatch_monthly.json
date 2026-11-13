@@ -1,0 +1,86 @@
+[
+  {
+    "trigger_month": "2018-01-01",
+    "is_historical_alert": false,
+    "orders": 5830,
+    "late_orders": 239,
+    "late_rate": 0.04099485420240137
+  },
+  {
+    "trigger_month": "2018-01-01",
+    "is_historical_alert": true,
+    "orders": 337,
+    "late_orders": 85,
+    "late_rate": 0.2522255192878338
+  },
+  {
+    "trigger_month": "2018-02-01",
+    "is_historical_alert": false,
+    "orders": 5753,
+    "late_orders": 479,
+    "late_rate": 0.08326090735268556
+  },
+  {
+    "trigger_month": "2018-02-01",
+    "is_historical_alert": true,
+    "orders": 397,
+    "late_orders": 103,
+    "late_rate": 0.2594458438287154
+  },
+  {
+    "trigger_month": "2018-03-01",
+    "is_historical_alert": false,
+    "orders": 7373,
+    "late_orders": 1490,
+    "late_rate": 0.20208870202088702
+  },
+  {
+    "trigger_month": "2018-03-01",
+    "is_historical_alert": true,
+    "orders": 301,
+    "late_orders": 133,
+    "late_rate": 0.4418604651162791
+  },
+  {
+    "trigger_month": "2018-04-01",
+    "is_historical_alert": false,
+    "orders": 5917,
+    "late_orders": 330,
+    "late_rate": 0.05577150583065743
+  },
+  {
+    "trigger_month": "2018-04-01",
+    "is_historical_alert": true,
+    "orders": 207,
+    "late_orders": 61,
+    "late_rate": 0.2946859903381642
+  },
+  {
+    "trigger_month": "2018-05-01",
+    "is_historical_alert": false,
+    "orders": 7191,
+    "late_orders": 395,
+    "late_rate": 0.054929773327770826
+  },
+  {
+    "trigger_month": "2018-05-01",
+    "is_historical_alert": true,
+    "orders": 198,
+    "late_orders": 96,
+    "late_rate": 0.48484848484848486
+  },
+  {
+    "trigger_month": "2018-06-01",
+    "is_historical_alert": false,
+    "orders": 5646,
+    "late_orders": 52,
+    "late_rate": 0.009210060219624512
+  },
+  {
+    "trigger_month": "2018-06-01",
+    "is_historical_alert": true,
+    "orders": 158,
+    "late_orders": 17,
+    "late_rate": 0.10759493670886076
+  }
+]

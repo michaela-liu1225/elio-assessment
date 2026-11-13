@@ -1,9 +1,9 @@
 {
   "engine": "snowflake",
-  "recorded_at_utc": "2026-11-12T23:47:39.725987+00:00",
+  "recorded_at_utc": "2026-11-13T00:37:00.872395+00:00",
   "queries": {
     "runtime": {
-      "query_id": "01c85f33-0004-d442-0000-000409629179",
+      "query_id": "01c85f65-0004-d442-0000-000409629451",
       "sql": "select current_version() as snowflake_version, current_region() as region, current_role() as role, current_database() as database_name, current_warehouse() as warehouse",
       "rows": [
         {
@@ -16,7 +16,7 @@
       ]
     },
     "load_audit": {
-      "query_id": "01c85f33-0004-d5a8-0000-0004096281c9",
+      "query_id": "01c85f65-0004-d442-0000-000409629455",
       "sql": "select table_name, file_sha256, row_count from ELIO_ASSESSMENT.RAW.LOAD_AUDIT order by table_name, file_sha256",
       "rows": [
         {
@@ -48,11 +48,16 @@
           "table_name": "products",
           "file_sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
           "row_count": 32951
+        },
+        {
+          "table_name": "reviews",
+          "file_sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7",
+          "row_count": 99224
         }
       ]
     },
     "raw_count_orders": {
-      "query_id": "01c85f33-0004-d5a8-0000-0004096281cd",
+      "query_id": "01c85f65-0004-d5a8-0000-00040962841d",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.ORDERS",
       "rows": [
         {
@@ -61,7 +66,7 @@
       ]
     },
     "raw_count_order_items": {
-      "query_id": "01c85f33-0004-d442-0000-00040962917d",
+      "query_id": "01c85f65-0004-d442-0000-000409629459",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.ORDER_ITEMS",
       "rows": [
         {
@@ -70,7 +75,7 @@
       ]
     },
     "raw_count_customers": {
-      "query_id": "01c85f33-0004-d442-0000-000409629185",
+      "query_id": "01c85f65-0004-d442-0000-00040962945d",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.CUSTOMERS",
       "rows": [
         {
@@ -79,7 +84,7 @@
       ]
     },
     "raw_count_products": {
-      "query_id": "01c85f33-0004-d5a8-0000-0004096281d1",
+      "query_id": "01c85f65-0004-d442-0000-000409629461",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.PRODUCTS",
       "rows": [
         {
@@ -88,7 +93,7 @@
       ]
     },
     "raw_count_payments": {
-      "query_id": "01c85f33-0004-d5a8-0000-0004096281d5",
+      "query_id": "01c85f65-0004-d442-0000-000409629465",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.PAYMENTS",
       "rows": [
         {
@@ -96,8 +101,17 @@
         }
       ]
     },
+    "raw_count_reviews": {
+      "query_id": "01c85f65-0004-d5a8-0000-000409628421",
+      "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.REVIEWS",
+      "rows": [
+        {
+          "source_rows": 99224
+        }
+      ]
+    },
     "raw_count_category_translation": {
-      "query_id": "01c85f33-0004-d442-0000-000409629189",
+      "query_id": "01c85f65-0004-d5a8-0000-000409628425",
       "sql": "select count(*) as source_rows from ELIO_ASSESSMENT.RAW.CATEGORY_TRANSLATION",
       "rows": [
         {
@@ -106,7 +120,7 @@
       ]
     },
     "catalogue_quality": {
-      "query_id": "01c85f33-0004-d442-0000-00040962918d",
+      "query_id": "01c85f65-0004-d442-0000-000409629469",
       "sql": "select count(case when category_name='__unknown__' then 1 end) as missing_category_products, count(distinct case when not has_translation and category_name<>'__unknown__' then category_name end) as untranslated_categories from ELIO_ASSESSMENT.DEV_MARTS.DIM_PRODUCT",
       "rows": [
         {
@@ -116,7 +130,7 @@
       ]
     },
     "zero_payments": {
-      "query_id": "01c85f33-0004-d5a8-0000-0004096281d9",
+      "query_id": "01c85f65-0004-d442-0000-00040962946d",
       "sql": "select payment_type, count(*) as payment_records from ELIO_ASSESSMENT.DEV_STAGING.STG_PAYMENTS where payment_value=0 group by payment_type order by payment_type",
       "rows": [
         {
@@ -128,6 +142,26 @@
           "payment_records": 6
         }
       ]
+    },
+    "review_grain": {
+      "query_id": "01c85f65-0004-d5a8-0000-000409628429",
+      "sql": "select count(*) as review_order_pairs, count(distinct review_id) as distinct_review_ids, count(distinct order_id) as distinct_reviewed_orders from ELIO_ASSESSMENT.RAW.REVIEWS",
+      "rows": [
+        {
+          "review_order_pairs": 99224,
+          "distinct_review_ids": 98410,
+          "distinct_reviewed_orders": 98673
+        }
+      ]
+    },
+    "reference_worklist_count": {
+      "query_id": "01c85f65-0004-d5a8-0000-00040962842d",
+      "sql": "select count(*) as reference_candidates from (-- Reference integration query, NOT a live feed or a historical eligibility replay.\n-- Replace the timestamp with a bound scheduler parameter and refresh the source first.\n-- Current status / event freshness / cancellation / prior-action checks must be atomic\n-- in the operational system immediately before notifying a seller.\nwith run_context as (\n    select to_timestamp_ntz('2018-08-31 00:00:00') as as_of_at\n)\nselect r.order_id, r.seller_id, r.shipping_deadline_at, r.estimated_delivery_date,\n       'confirm carrier pickup; escalate only if unresolved' as proposed_action\nfrom ELIO_ASSESSMENT.DEV_MARTS.MART_DELIVERY_RISK r\ncross join run_context c\nwhere r.has_valid_dispatch_context\n  and r.order_status in ('approved', 'invoiced', 'processing')\n  and r.approved_at <= c.as_of_at\n  and r.carrier_received_at is null and r.delivered_at is null\n  and r.trigger_at <= c.as_of_at\n  and r.trigger_at > dateadd(day, -2, c.as_of_at) -- do not replay stale backlog\n  and dateadd(day, 2, cast(c.as_of_at as date)) <= r.estimated_delivery_date\norder by r.estimated_delivery_date, r.order_id\n)",
+      "rows": [
+        {
+          "reference_candidates": 0
+        }
+      ]
     }
   },
   "warehouse": {
@@ -136,5 +170,5 @@
     "auto_suspend": 60,
     "auto_resume": "true"
   },
-  "warehouse_query_id": "01c85f33-0004-d5a8-0000-0004096281c5"
+  "warehouse_query_id": "01c85f65-0004-d5a8-0000-000409628419"
 }

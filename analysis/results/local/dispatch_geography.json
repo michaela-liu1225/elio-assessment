@@ -1,0 +1,308 @@
+[
+  {
+    "delivery_state": "AC",
+    "is_historical_alert": false,
+    "orders": 6,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "AL",
+    "is_historical_alert": false,
+    "orders": 69,
+    "late_orders": 10
+  },
+  {
+    "delivery_state": "AL",
+    "is_historical_alert": true,
+    "orders": 3,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "AM",
+    "is_historical_alert": false,
+    "orders": 16,
+    "late_orders": 0
+  },
+  {
+    "delivery_state": "AM",
+    "is_historical_alert": true,
+    "orders": 1,
+    "late_orders": 0
+  },
+  {
+    "delivery_state": "AP",
+    "is_historical_alert": false,
+    "orders": 13,
+    "late_orders": 0
+  },
+  {
+    "delivery_state": "BA",
+    "is_historical_alert": false,
+    "orders": 627,
+    "late_orders": 99
+  },
+  {
+    "delivery_state": "BA",
+    "is_historical_alert": true,
+    "orders": 16,
+    "late_orders": 9
+  },
+  {
+    "delivery_state": "CE",
+    "is_historical_alert": false,
+    "orders": 224,
+    "late_orders": 35
+  },
+  {
+    "delivery_state": "CE",
+    "is_historical_alert": true,
+    "orders": 10,
+    "late_orders": 5
+  },
+  {
+    "delivery_state": "DF",
+    "is_historical_alert": false,
+    "orders": 426,
+    "late_orders": 16
+  },
+  {
+    "delivery_state": "DF",
+    "is_historical_alert": true,
+    "orders": 13,
+    "late_orders": 4
+  },
+  {
+    "delivery_state": "ES",
+    "is_historical_alert": false,
+    "orders": 381,
+    "late_orders": 49
+  },
+  {
+    "delivery_state": "ES",
+    "is_historical_alert": true,
+    "orders": 17,
+    "late_orders": 9
+  },
+  {
+    "delivery_state": "GO",
+    "is_historical_alert": false,
+    "orders": 351,
+    "late_orders": 14
+  },
+  {
+    "delivery_state": "GO",
+    "is_historical_alert": true,
+    "orders": 16,
+    "late_orders": 4
+  },
+  {
+    "delivery_state": "MA",
+    "is_historical_alert": false,
+    "orders": 110,
+    "late_orders": 13
+  },
+  {
+    "delivery_state": "MA",
+    "is_historical_alert": true,
+    "orders": 7,
+    "late_orders": 5
+  },
+  {
+    "delivery_state": "MG",
+    "is_historical_alert": false,
+    "orders": 2149,
+    "late_orders": 83
+  },
+  {
+    "delivery_state": "MG",
+    "is_historical_alert": true,
+    "orders": 53,
+    "late_orders": 15
+  },
+  {
+    "delivery_state": "MS",
+    "is_historical_alert": false,
+    "orders": 140,
+    "late_orders": 10
+  },
+  {
+    "delivery_state": "MS",
+    "is_historical_alert": true,
+    "orders": 2,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "MT",
+    "is_historical_alert": false,
+    "orders": 173,
+    "late_orders": 2
+  },
+  {
+    "delivery_state": "MT",
+    "is_historical_alert": true,
+    "orders": 5,
+    "late_orders": 2
+  },
+  {
+    "delivery_state": "PA",
+    "is_historical_alert": false,
+    "orders": 150,
+    "late_orders": 26
+  },
+  {
+    "delivery_state": "PA",
+    "is_historical_alert": true,
+    "orders": 2,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "PB",
+    "is_historical_alert": false,
+    "orders": 85,
+    "late_orders": 9
+  },
+  {
+    "delivery_state": "PB",
+    "is_historical_alert": true,
+    "orders": 3,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "PE",
+    "is_historical_alert": false,
+    "orders": 286,
+    "late_orders": 26
+  },
+  {
+    "delivery_state": "PE",
+    "is_historical_alert": true,
+    "orders": 15,
+    "late_orders": 8
+  },
+  {
+    "delivery_state": "PI",
+    "is_historical_alert": false,
+    "orders": 87,
+    "late_orders": 15
+  },
+  {
+    "delivery_state": "PI",
+    "is_historical_alert": true,
+    "orders": 5,
+    "late_orders": 3
+  },
+  {
+    "delivery_state": "PR",
+    "is_historical_alert": false,
+    "orders": 965,
+    "late_orders": 25
+  },
+  {
+    "delivery_state": "PR",
+    "is_historical_alert": true,
+    "orders": 20,
+    "late_orders": 6
+  },
+  {
+    "delivery_state": "RJ",
+    "is_historical_alert": false,
+    "orders": 2237,
+    "late_orders": 116
+  },
+  {
+    "delivery_state": "RJ",
+    "is_historical_alert": true,
+    "orders": 55,
+    "late_orders": 13
+  },
+  {
+    "delivery_state": "RN",
+    "is_historical_alert": false,
+    "orders": 85,
+    "late_orders": 12
+  },
+  {
+    "delivery_state": "RN",
+    "is_historical_alert": true,
+    "orders": 4,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "RO",
+    "is_historical_alert": false,
+    "orders": 34,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "RO",
+    "is_historical_alert": true,
+    "orders": 3,
+    "late_orders": 0
+  },
+  {
+    "delivery_state": "RR",
+    "is_historical_alert": false,
+    "orders": 4,
+    "late_orders": 1
+  },
+  {
+    "delivery_state": "RS",
+    "is_historical_alert": false,
+    "orders": 947,
+    "late_orders": 31
+  },
+  {
+    "delivery_state": "RS",
+    "is_historical_alert": true,
+    "orders": 23,
+    "late_orders": 2
+  },
+  {
+    "delivery_state": "SC",
+    "is_historical_alert": false,
+    "orders": 635,
+    "late_orders": 18
+  },
+  {
+    "delivery_state": "SC",
+    "is_historical_alert": true,
+    "orders": 22,
+    "late_orders": 4
+  },
+  {
+    "delivery_state": "SE",
+    "is_historical_alert": false,
+    "orders": 43,
+    "late_orders": 8
+  },
+  {
+    "delivery_state": "SE",
+    "is_historical_alert": true,
+    "orders": 3,
+    "late_orders": 2
+  },
+  {
+    "delivery_state": "SP",
+    "is_historical_alert": false,
+    "orders": 8459,
+    "late_orders": 152
+  },
+  {
+    "delivery_state": "SP",
+    "is_historical_alert": true,
+    "orders": 264,
+    "late_orders": 77
+  },
+  {
+    "delivery_state": "TO",
+    "is_historical_alert": false,
+    "orders": 52,
+    "late_orders": 5
+  },
+  {
+    "delivery_state": "TO",
+    "is_historical_alert": true,
+    "orders": 1,
+    "late_orders": 1
+  }
+]

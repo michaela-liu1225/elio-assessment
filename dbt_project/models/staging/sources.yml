@@ -96,3 +96,19 @@ sources:
           payload_columns:
           - product_category_name
           - product_category_name_english
+  - name: reviews
+    description: Original review/order pairs and free text; comments remain RAW-only in this analysis.
+    data_tests:
+    - no_conflicting_payloads:
+        arguments:
+          key_columns:
+          - order_id
+          - review_id
+          payload_columns:
+          - review_id
+          - order_id
+          - review_score
+          - review_comment_title
+          - review_comment_message
+          - review_creation_date
+          - review_answer_timestamp

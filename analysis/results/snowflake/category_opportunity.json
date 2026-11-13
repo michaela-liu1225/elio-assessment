@@ -1,0 +1,32 @@
+[
+  {
+    "category_label": "watches_gifts",
+    "orders": 1491,
+    "merchandise_gmv": 293015.62,
+    "share_of_gmv": 0.10438164220148398
+  },
+  {
+    "category_label": "health_beauty",
+    "orders": 2078,
+    "merchandise_gmv": 292338.55,
+    "share_of_gmv": 0.10414044796588194
+  },
+  {
+    "category_label": "bed_bath_table",
+    "orders": 1849,
+    "merchandise_gmv": 213501.76,
+    "share_of_gmv": 0.07605623318547695
+  },
+  {
+    "category_label": "sports_leisure",
+    "orders": 1340,
+    "merchandise_gmv": 169919.45,
+    "share_of_gmv": 0.06053080457954067
+  },
+  {
+    "category_label": "housewares",
+    "orders": 1367,
+    "merchandise_gmv": 163100.47,
+    "share_of_gmv": 0.058101663325777216
+  }
+]

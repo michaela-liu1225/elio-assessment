@@ -1,6 +1,6 @@
 {
-  "compared_at_utc": "2026-11-12T23:46:45.130167+00:00",
-  "sql_sha256": "a6ade80d3354252c4bc77590d083151c09735e70a15bce0c4b2ef42a994e037b",
+  "compared_at_utc": "2026-11-13T00:34:46.750651+00:00",
+  "sql_sha256": "33a0c2ad210a6e02bd0f2a6812cfe21826d9998fb62733cef6089fec673dc3ab",
   "checks": {
     "top_products": {
       "rows": 10,
@@ -36,6 +36,42 @@
     },
     "monthly_source_coverage": {
       "rows": 25,
+      "status": "matched"
+    },
+    "dispatch_quarter": {
+      "rows": 2,
+      "status": "matched"
+    },
+    "dispatch_status": {
+      "rows": 5,
+      "status": "matched"
+    },
+    "dispatch_monthly": {
+      "rows": 12,
+      "status": "matched"
+    },
+    "delivery_experience": {
+      "rows": 2,
+      "status": "matched"
+    },
+    "activation_quarter": {
+      "rows": 1,
+      "status": "matched"
+    },
+    "category_opportunity": {
+      "rows": 5,
+      "status": "matched"
+    },
+    "dispatch_geography": {
+      "rows": 51,
+      "status": "matched"
+    }
+  },
+  "derived_calculations": {
+    "decision_metrics": {
+      "status": "matched"
+    },
+    "commercial_decision": {
       "status": "matched"
     }
   },

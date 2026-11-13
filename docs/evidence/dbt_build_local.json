@@ -1,678 +1,839 @@
 {
   "engine": "local",
-  "generated_at_utc": "2026-11-12T23:36:40.093112Z",
+  "generated_at_utc": "2026-11-13T00:28:51.108948Z",
   "dbt_version": "1.12.7",
-  "invocation_id": "9ee5ef12-b8e1-4ed6-9360-8785ac6ddb84",
-  "elapsed_seconds": 1.9037680625915527,
+  "invocation_id": "42a44b43-a1e7-4329-a4b5-ad9267403bfa",
+  "elapsed_seconds": 2.116128921508789,
   "status_counts": {
-    "pass": 94,
-    "success": 17
+    "pass": 117,
+    "success": 20
+  },
+  "resource_counts": {
+    "test": 110,
+    "model": 20,
+    "unit_test": 7
   },
   "resources": [
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_category_translation_product_category_name__product_category_name__product_category_name_english.bf2d53615d",
       "status": "pass",
-      "execution_seconds": 0.09446406364440918,
+      "execution_seconds": 0.06710505485534668,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_customers_customer_id__customer_id__customer_unique_id__customer_zip_code_prefix__customer_city__customer_state.9698ee39ca",
       "status": "pass",
-      "execution_seconds": 0.13170933723449707,
+      "execution_seconds": 0.10453987121582031,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_payments_order_id__payment_sequential__order_id__payment_sequential__payment_type__payment_installments__payment_value.6df329ab56",
       "status": "pass",
-      "execution_seconds": 0.0532076358795166,
+      "execution_seconds": 0.0569610595703125,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_order_items_order_id__order_item_id__order_id__order_item_id__product_id__seller_id__shipping_limit_date__price__freight_value.5e522bfa00",
       "status": "pass",
-      "execution_seconds": 0.1511690616607666,
+      "execution_seconds": 0.12575411796569824,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_orders_order_id__order_id__customer_id__order_status__order_purchase_timestamp__order_approved_at__order_delivered_carrier_date__order_delivered_customer_date__order_estimated_delivery_date.17304ebe91",
       "status": "pass",
-      "execution_seconds": 0.17311739921569824,
+      "execution_seconds": 0.1421518325805664,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_products_product_id__product_id__product_category_name__product_name_lenght__product_description_lenght__product_photos_qty__product_weight_g__product_length_cm__product_height_cm__product_width_cm.620c91a3cd",
       "status": "pass",
-      "execution_seconds": 0.041288137435913086,
+      "execution_seconds": 0.03826403617858887,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.stg_category_translation",
       "status": "success",
-      "execution_seconds": 0.08979296684265137,
+      "execution_seconds": 0.044850826263427734,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.stg_customers",
       "status": "success",
-      "execution_seconds": 0.08888387680053711,
+      "execution_seconds": 0.03989982604980469,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.stg_payments",
       "status": "success",
-      "execution_seconds": 0.08026981353759766,
+      "execution_seconds": 0.03572797775268555,
       "query_id": null
     },
     {
-      "unique_id": "unit_test.elio_assessment.stg_order_items.malformed_numbers_are_visible_and_item_sequence_is_not_rounded",
+      "unique_id": "test.elio_assessment.source_no_conflicting_payloads_olist_reviews_order_id__review_id__review_id__order_id__review_score__review_comment_title__review_comment_message__review_creation_date__review_answer_timestamp.300ccc1211",
       "status": "pass",
-      "execution_seconds": 0.09969401359558105,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_category_translation_not__has_parse_error.4140c87897",
-      "status": "pass",
-      "execution_seconds": 0.019629240036010742,
+      "execution_seconds": 0.10293412208557129,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.stg_orders",
       "status": "success",
-      "execution_seconds": 0.038130998611450195,
+      "execution_seconds": 0.07521510124206543,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_category_translation_not__has_parse_error.4140c87897",
+      "status": "pass",
+      "execution_seconds": 0.02113509178161621,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.stg_products",
       "status": "success",
-      "execution_seconds": 0.038597822189331055,
+      "execution_seconds": 0.057405948638916016,
+      "query_id": null
+    },
+    {
+      "unique_id": "unit_test.elio_assessment.stg_order_items.malformed_numbers_are_visible_and_item_sequence_is_not_rounded",
+      "status": "pass",
+      "execution_seconds": 0.09688997268676758,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation__loaded_at.4dab7346f0",
       "status": "pass",
-      "execution_seconds": 0.01929020881652832,
-      "query_id": null
-    },
-    {
-      "unique_id": "model.elio_assessment.stg_order_items",
-      "status": "success",
-      "execution_seconds": 0.03385519981384277,
+      "execution_seconds": 0.020361900329589844,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation__source.dc68b6eec5",
       "status": "pass",
-      "execution_seconds": 0.022495031356811523,
+      "execution_seconds": 0.016947269439697266,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_category_translation_category_name.dc441cbb01",
       "status": "pass",
-      "execution_seconds": 0.02251601219177246,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_stg_category_translation_category_name.30a9932d0d",
-      "status": "pass",
-      "execution_seconds": 0.02344799041748047,
+      "execution_seconds": 0.018219947814941406,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers__loaded_at.3c133e1785",
       "status": "pass",
-      "execution_seconds": 0.018236875534057617,
+      "execution_seconds": 0.01378774642944336,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_stg_customers__source.d0f3975686",
+      "unique_id": "test.elio_assessment.unique_stg_category_translation_category_name.30a9932d0d",
       "status": "pass",
-      "execution_seconds": 0.018390893936157227,
+      "execution_seconds": 0.02108907699584961,
+      "query_id": null
+    },
+    {
+      "unique_id": "model.elio_assessment.stg_order_items",
+      "status": "success",
+      "execution_seconds": 0.03173995018005371,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_customers_not__has_parse_error.35c79eb677",
       "status": "pass",
-      "execution_seconds": 0.0321040153503418,
+      "execution_seconds": 0.03274083137512207,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_stg_customers_customer_id.e2cfb1f9aa",
+      "unique_id": "test.elio_assessment.not_null_stg_customers__source.d0f3975686",
       "status": "pass",
-      "execution_seconds": 0.032774925231933594,
+      "execution_seconds": 0.023401975631713867,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_customers_customer_unique_id.7144461cba",
       "status": "pass",
-      "execution_seconds": 0.03248786926269531,
+      "execution_seconds": 0.025221824645996094,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_payments_not__has_parse_error.874262ce64",
+      "unique_id": "test.elio_assessment.not_null_stg_customers_customer_id.e2cfb1f9aa",
       "status": "pass",
-      "execution_seconds": 0.03589892387390137,
+      "execution_seconds": 0.03758502006530762,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_customers_customer_id.c7614daada",
       "status": "pass",
-      "execution_seconds": 0.04706263542175293,
+      "execution_seconds": 0.038382768630981445,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_stg_payments__loaded_at.5b5341387d",
+      "unique_id": "test.elio_assessment.expression_is_true_stg_payments_not__has_parse_error.874262ce64",
       "status": "pass",
-      "execution_seconds": 0.02545785903930664,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.not_null_stg_payments__source.d6eb7fb2d1",
-      "status": "pass",
-      "execution_seconds": 0.022896766662597656,
+      "execution_seconds": 0.03972792625427246,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.expression_is_true_stg_payments_payment_value_0_and_payment_sequence_1_and_installment_count_0.0574fdf339",
       "status": "pass",
-      "execution_seconds": 0.0476689338684082,
+      "execution_seconds": 0.033477783203125,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_stg_payments_order_id.601cf57649",
+      "unique_id": "test.elio_assessment.not_null_stg_payments__loaded_at.5b5341387d",
       "status": "pass",
-      "execution_seconds": 0.042120933532714844,
+      "execution_seconds": 0.033663034439086914,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_payments__source.d6eb7fb2d1",
+      "status": "pass",
+      "execution_seconds": 0.02866673469543457,
+      "query_id": null
+    },
+    {
+      "unique_id": "model.elio_assessment.stg_reviews",
+      "status": "success",
+      "execution_seconds": 0.014171123504638672,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_payments_payment_sequence.709f195f9b",
       "status": "pass",
-      "execution_seconds": 0.04534292221069336,
+      "execution_seconds": 0.0282440185546875,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_payments_order_id.601cf57649",
+      "status": "pass",
+      "execution_seconds": 0.03734302520751953,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_combination_stg_payments_order_id__payment_sequence.0163cb23f5",
       "status": "pass",
-      "execution_seconds": 0.04355287551879883,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.accepted_values_stg_orders_order_status__created__approved__invoiced__processing__shipped__delivered__unavailable__canceled.c3ef7d7ae3",
-      "status": "pass",
-      "execution_seconds": 0.03952789306640625,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.not_null_stg_orders__loaded_at.9aeaffff63",
-      "status": "pass",
-      "execution_seconds": 0.03921318054199219,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_orders_not__has_parse_error.92fd041db5",
-      "status": "pass",
-      "execution_seconds": 0.06274676322937012,
+      "execution_seconds": 0.025507211685180664,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders__source.18c0c4a2b1",
       "status": "pass",
-      "execution_seconds": 0.041793107986450195,
+      "execution_seconds": 0.012223005294799805,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_orders__loaded_at.9aeaffff63",
+      "status": "pass",
+      "execution_seconds": 0.01797199249267578,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.accepted_values_stg_orders_order_status__created__approved__invoiced__processing__shipped__delivered__unavailable__canceled.c3ef7d7ae3",
+      "status": "pass",
+      "execution_seconds": 0.05005979537963867,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_customer_id.af79d5e4b5",
       "status": "pass",
-      "execution_seconds": 0.05214810371398926,
+      "execution_seconds": 0.043718814849853516,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_stg_orders_order_id.81cfe2fe64",
+      "unique_id": "test.elio_assessment.expression_is_true_stg_orders_not__has_parse_error.92fd041db5",
       "status": "pass",
-      "execution_seconds": 0.03025531768798828,
+      "execution_seconds": 0.07938575744628906,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_order_status.d7fcf15f79",
       "status": "pass",
-      "execution_seconds": 0.03130006790161133,
+      "execution_seconds": 0.04285907745361328,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_orders_order_id.81cfe2fe64",
+      "status": "pass",
+      "execution_seconds": 0.05916595458984375,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_orders_purchased_at.c1efa3edc3",
       "status": "pass",
-      "execution_seconds": 0.03925681114196777,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.relationships_stg_orders_customer_id__customer_id__ref_stg_customers_.430bf21500",
-      "status": "pass",
-      "execution_seconds": 0.037261009216308594,
+      "execution_seconds": 0.040785789489746094,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_orders_customer_id.f138e21520",
       "status": "pass",
-      "execution_seconds": 0.04057025909423828,
+      "execution_seconds": 0.02821660041809082,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_products_not__has_parse_error.a9f7135440",
+      "unique_id": "test.elio_assessment.relationships_stg_orders_customer_id__customer_id__ref_stg_customers_.430bf21500",
       "status": "pass",
-      "execution_seconds": 0.03982996940612793,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_stg_orders_order_id.e3b841c71a",
-      "status": "pass",
-      "execution_seconds": 0.056871891021728516,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.not_null_stg_products__loaded_at.83bb4b6ede",
-      "status": "pass",
-      "execution_seconds": 0.024350881576538086,
+      "execution_seconds": 0.0516660213470459,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_payments_order_id__order_id__ref_stg_orders_.8426a3f3d3",
       "status": "pass",
-      "execution_seconds": 0.08269810676574707,
+      "execution_seconds": 0.05261397361755371,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_products__loaded_at.83bb4b6ede",
+      "status": "pass",
+      "execution_seconds": 0.021998167037963867,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_products_not__has_parse_error.a9f7135440",
+      "status": "pass",
+      "execution_seconds": 0.03675436973571777,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_products__source.df1c7c814a",
       "status": "pass",
-      "execution_seconds": 0.026102066040039062,
+      "execution_seconds": 0.021231651306152344,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_stg_orders_order_id.e3b841c71a",
+      "status": "pass",
+      "execution_seconds": 0.05804896354675293,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_products_product_id.6373b0acf3",
       "status": "pass",
-      "execution_seconds": 0.024538040161132812,
+      "execution_seconds": 0.027523040771484375,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_stg_products_product_id.7d950a1467",
       "status": "pass",
-      "execution_seconds": 0.04500412940979004,
+      "execution_seconds": 0.02779388427734375,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items__loaded_at.29dc7aa4ec",
       "status": "pass",
-      "execution_seconds": 0.028136253356933594,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_not__has_parse_error.d9a4f499e8",
-      "status": "pass",
-      "execution_seconds": 0.04985213279724121,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_price_0_and_freight_value_0_and_order_item_id_1.c98003ab31",
-      "status": "pass",
-      "execution_seconds": 0.03954911231994629,
+      "execution_seconds": 0.020109176635742188,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items__source.2e2907dbfc",
       "status": "pass",
-      "execution_seconds": 0.023409128189086914,
+      "execution_seconds": 0.026900053024291992,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_price_0_and_freight_value_0_and_order_item_id_1.c98003ab31",
+      "status": "pass",
+      "execution_seconds": 0.0473020076751709,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_order_items_not__has_parse_error.d9a4f499e8",
+      "status": "pass",
+      "execution_seconds": 0.05407524108886719,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_order_item_id.26a7e2bc35",
       "status": "pass",
-      "execution_seconds": 0.026215076446533203,
+      "execution_seconds": 0.026727914810180664,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_product_id.5154a8a6f6",
       "status": "pass",
-      "execution_seconds": 0.03656721115112305,
+      "execution_seconds": 0.02816629409790039,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_stg_order_items_order_id.2063801f96",
       "status": "pass",
-      "execution_seconds": 0.0459136962890625,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_combination_stg_order_items_order_id__order_item_id.32c8146637",
-      "status": "pass",
-      "execution_seconds": 0.03423309326171875,
+      "execution_seconds": 0.04970884323120117,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_order_items_product_id__product_id__ref_stg_products_.886a82c26c",
       "status": "pass",
-      "execution_seconds": 0.04782915115356445,
+      "execution_seconds": 0.03504204750061035,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_stg_order_items_order_id__order_id__ref_stg_orders_.dbe9930c54",
       "status": "pass",
-      "execution_seconds": 0.05997896194458008,
+      "execution_seconds": 0.05908083915710449,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_combination_stg_order_items_order_id__order_item_id.32c8146637",
+      "status": "pass",
+      "execution_seconds": 0.03148484230041504,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.int_customers",
       "status": "success",
-      "execution_seconds": 0.03971409797668457,
-      "query_id": null
-    },
-    {
-      "unique_id": "model.elio_assessment.int_categories",
-      "status": "success",
-      "execution_seconds": 0.02749776840209961,
+      "execution_seconds": 0.07459712028503418,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.int_order_customers",
       "status": "success",
-      "execution_seconds": 0.02851581573486328,
+      "execution_seconds": 0.05595803260803223,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews__loaded_at.bed4875cee",
+      "status": "pass",
+      "execution_seconds": 0.016633272171020508,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.expression_is_true_stg_reviews_not__has_parse_error_and_review_score_between_1_and_5_and_review_answered_at_review_created_at.1f3b0ac221",
+      "status": "pass",
+      "execution_seconds": 0.08330488204956055,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews__source.bb79460134",
+      "status": "pass",
+      "execution_seconds": 0.03821897506713867,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_order_id.da21bf836d",
+      "status": "pass",
+      "execution_seconds": 0.05735206604003906,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_review_score.0e48fbb0d1",
+      "status": "pass",
+      "execution_seconds": 0.027175188064575195,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_stg_reviews_review_id.943b8fc3e4",
+      "status": "pass",
+      "execution_seconds": 0.06161999702453613,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_stg_reviews_order_id__order_id__ref_stg_orders_.0d244d7444",
+      "status": "pass",
+      "execution_seconds": 0.046233177185058594,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_combination_stg_reviews_order_id__review_id.68fc40547b",
+      "status": "pass",
+      "execution_seconds": 0.036475181579589844,
+      "query_id": null
+    },
+    {
+      "unique_id": "model.elio_assessment.int_categories",
+      "status": "success",
+      "execution_seconds": 0.03371381759643555,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_int_customers_customer_unique_id.1169872bd0",
       "status": "pass",
-      "execution_seconds": 0.030192136764526367,
+      "execution_seconds": 0.03261208534240723,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_int_customers_customer_unique_id.0139cca6ab",
       "status": "pass",
-      "execution_seconds": 0.037903785705566406,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.not_null_int_categories_category_name.bdd3eca1be",
-      "status": "pass",
-      "execution_seconds": 0.029356956481933594,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.category_coverage",
-      "status": "pass",
-      "execution_seconds": 0.037808895111083984,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_int_categories_category_name.54b62d7aff",
-      "status": "pass",
-      "execution_seconds": 0.027048826217651367,
+      "execution_seconds": 0.03844594955444336,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_int_order_customers_customer_id.c4e8b5d5ae",
       "status": "pass",
-      "execution_seconds": 0.04145097732543945,
+      "execution_seconds": 0.035989999771118164,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.category_coverage",
+      "status": "pass",
+      "execution_seconds": 0.018579959869384766,
+      "query_id": null
+    },
+    {
+      "unique_id": "unit_test.elio_assessment.int_order_reviews.first_review_preserves_order_grain_and_excludes_future_responses",
+      "status": "pass",
+      "execution_seconds": 0.03914594650268555,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_int_order_customers_customer_id.fd02a9c004",
       "status": "pass",
-      "execution_seconds": 0.03768301010131836,
+      "execution_seconds": 0.048483848571777344,
       "query_id": null
     },
     {
-      "unique_id": "model.elio_assessment.dim_product",
+      "unique_id": "test.elio_assessment.not_null_int_categories_category_name.bdd3eca1be",
+      "status": "pass",
+      "execution_seconds": 0.0234220027923584,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_int_categories_category_name.54b62d7aff",
+      "status": "pass",
+      "execution_seconds": 0.03428792953491211,
+      "query_id": null
+    },
+    {
+      "unique_id": "model.elio_assessment.int_order_reviews",
       "status": "success",
-      "execution_seconds": 0.0677497386932373,
+      "execution_seconds": 0.03997397422790527,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.dim_customer",
       "status": "success",
-      "execution_seconds": 0.07225513458251953,
+      "execution_seconds": 0.07173919677734375,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_dim_product_product_sk.271feb5417",
-      "status": "pass",
-      "execution_seconds": 0.019095897674560547,
+      "unique_id": "model.elio_assessment.dim_product",
+      "status": "success",
+      "execution_seconds": 0.04592466354370117,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_dim_product_product_id.02b1f06816",
+      "unique_id": "test.elio_assessment.not_null_int_order_reviews_order_id.9983d35aba",
       "status": "pass",
-      "execution_seconds": 0.02001476287841797,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_dim_product_product_sk.2248c4335c",
-      "status": "pass",
-      "execution_seconds": 0.016932010650634766,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_dim_product_product_id.46495bf7fe",
-      "status": "pass",
-      "execution_seconds": 0.025535106658935547,
+      "execution_seconds": 0.04824185371398926,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_customer_customer_sk.69b9dd095b",
       "status": "pass",
-      "execution_seconds": 0.019628047943115234,
+      "execution_seconds": 0.011080026626586914,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_dim_customer_customer_unique_id.0020205ea4",
       "status": "pass",
-      "execution_seconds": 0.015631914138793945,
+      "execution_seconds": 0.022325992584228516,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.unique_dim_customer_customer_unique_id.6d479619c1",
+      "unique_id": "test.elio_assessment.relationships_int_order_reviews_order_id__order_id__ref_stg_orders_.2cfcda8721",
       "status": "pass",
-      "execution_seconds": 0.016656160354614258,
+      "execution_seconds": 0.07657814025878906,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_dim_product_product_id.02b1f06816",
+      "status": "pass",
+      "execution_seconds": 0.007254123687744141,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_dim_customer_customer_sk.c225f6f263",
       "status": "pass",
-      "execution_seconds": 0.01800704002380371,
+      "execution_seconds": 0.03777003288269043,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_dim_customer_customer_unique_id.6d479619c1",
+      "status": "pass",
+      "execution_seconds": 0.027669906616210938,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_int_order_reviews_order_id.53079d172d",
+      "status": "pass",
+      "execution_seconds": 0.06333589553833008,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_dim_product_product_sk.271feb5417",
+      "status": "pass",
+      "execution_seconds": 0.028846025466918945,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_dim_product_product_id.46495bf7fe",
+      "status": "pass",
+      "execution_seconds": 0.022255897521972656,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_dim_product_product_sk.2248c4335c",
+      "status": "pass",
+      "execution_seconds": 0.019711971282958984,
       "query_id": null
     },
     {
       "unique_id": "unit_test.elio_assessment.fct_orders.payments_do_not_multiply_items_and_missing_is_not_zero",
       "status": "pass",
-      "execution_seconds": 0.07681822776794434,
+      "execution_seconds": 0.07230687141418457,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.fct_order_items",
       "status": "success",
-      "execution_seconds": 0.14558076858520508,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.not_null_fct_order_items_order_id.e887a2de02",
-      "status": "pass",
-      "execution_seconds": 0.018867015838623047,
+      "execution_seconds": 0.13685989379882812,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_customer_sk.45f21cac3d",
       "status": "pass",
-      "execution_seconds": 0.025422096252441406,
+      "execution_seconds": 0.016549110412597656,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_fct_order_items_order_id.e887a2de02",
+      "status": "pass",
+      "execution_seconds": 0.016631126403808594,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_order_item_sk.b672ac3d78",
       "status": "pass",
-      "execution_seconds": 0.019773244857788086,
+      "execution_seconds": 0.017453908920288086,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_order_items_product_sk.2a0669cda9",
       "status": "pass",
-      "execution_seconds": 0.02252197265625,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.relationships_fct_order_items_product_sk__product_sk__ref_dim_product_.04e628e7c6",
-      "status": "pass",
-      "execution_seconds": 0.02855992317199707,
+      "execution_seconds": 0.02086472511291504,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_order_items_customer_sk__customer_sk__ref_dim_customer_.3da3593b7e",
       "status": "pass",
-      "execution_seconds": 0.029052019119262695,
+      "execution_seconds": 0.02685689926147461,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_fct_order_items_product_sk__product_sk__ref_dim_product_.04e628e7c6",
+      "status": "pass",
+      "execution_seconds": 0.023859024047851562,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_fct_order_items_order_item_sk.dafcd51e85",
       "status": "pass",
-      "execution_seconds": 0.07025718688964844,
+      "execution_seconds": 0.013210058212280273,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.fct_orders",
       "status": "success",
-      "execution_seconds": 0.3304629325866699,
+      "execution_seconds": 0.3271040916442871,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_orders_customer_sk.670251d545",
       "status": "pass",
-      "execution_seconds": 0.020027875900268555,
+      "execution_seconds": 0.01904606819152832,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_fct_orders_order_id.4e687af8d0",
       "status": "pass",
-      "execution_seconds": 0.02158522605895996,
+      "execution_seconds": 0.01906871795654297,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_order_items_order_id__order_id__ref_fct_orders_.f1e7dbc0ec",
       "status": "pass",
-      "execution_seconds": 0.034642934799194336,
+      "execution_seconds": 0.02821803092956543,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.order_and_item_conservation",
       "status": "pass",
-      "execution_seconds": 0.03965473175048828,
+      "execution_seconds": 0.03686022758483887,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_fct_orders_order_id.523ddb6ce5",
       "status": "pass",
-      "execution_seconds": 0.016611099243164062,
+      "execution_seconds": 0.024089813232421875,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_fct_orders_customer_sk__customer_sk__ref_dim_customer_.4ac8b5d43f",
       "status": "pass",
-      "execution_seconds": 0.027572154998779297,
+      "execution_seconds": 0.025779008865356445,
       "query_id": null
     },
     {
       "unique_id": "unit_test.elio_assessment.int_purchase_occasions.same_day_orders_form_one_purchase_occasion",
       "status": "pass",
-      "execution_seconds": 0.029431819915771484,
+      "execution_seconds": 0.0618128776550293,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.int_purchase_occasions",
       "status": "success",
-      "execution_seconds": 0.01046299934387207,
+      "execution_seconds": 0.009206056594848633,
+      "query_id": null
+    },
+    {
+      "unique_id": "unit_test.elio_assessment.mart_delivery_risk.dispatch_trigger_boundaries_missing_inputs_and_snapshot_cancellation",
+      "status": "pass",
+      "execution_seconds": 0.10386419296264648,
       "query_id": null
     },
     {
       "unique_id": "unit_test.elio_assessment.mart_customer_retention.sixty_day_boundary_and_immature_customers",
       "status": "pass",
-      "execution_seconds": 0.04202914237976074,
+      "execution_seconds": 0.04139304161071777,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.mart_customer_retention",
       "status": "success",
-      "execution_seconds": 0.057836055755615234,
+      "execution_seconds": 0.07007122039794922,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_mart_customer_retention_customer_sk.816b6edb5e",
       "status": "pass",
-      "execution_seconds": 0.0195467472076416,
+      "execution_seconds": 0.015414714813232422,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.retention_window_integrity",
       "status": "pass",
-      "execution_seconds": 0.020634889602661133,
-      "query_id": null
-    },
-    {
-      "unique_id": "test.elio_assessment.unique_mart_customer_retention_customer_sk.4d933bf580",
-      "status": "pass",
-      "execution_seconds": 0.023798704147338867,
+      "execution_seconds": 0.015515804290771484,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_mart_customer_retention_customer_sk__customer_sk__ref_dim_customer_.eff8c71460",
       "status": "pass",
-      "execution_seconds": 0.024548053741455078,
+      "execution_seconds": 0.022023916244506836,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_mart_customer_retention_customer_sk.4d933bf580",
+      "status": "pass",
+      "execution_seconds": 0.011188030242919922,
       "query_id": null
     },
     {
       "unique_id": "unit_test.elio_assessment.mart_activation_candidates.audience_excludes_inflight_orders_but_ignores_future_purchases",
       "status": "pass",
-      "execution_seconds": 0.03151202201843262,
+      "execution_seconds": 0.0300290584564209,
+      "query_id": null
+    },
+    {
+      "unique_id": "model.elio_assessment.mart_delivery_risk",
+      "status": "success",
+      "execution_seconds": 0.17984390258789062,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_awaiting_handoff_at_trigger.6d44b8f1d3",
+      "status": "pass",
+      "execution_seconds": 0.013286113739013672,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.delivery_risk_conservation",
+      "status": "pass",
+      "execution_seconds": 0.02032184600830078,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.mart_activation_candidates",
       "status": "success",
-      "execution_seconds": 0.022819995880126953,
+      "execution_seconds": 0.05675315856933594,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.not_null_mart_activation_candidates_customer_sk.ab006fe758",
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_has_mature_delivery_window.332a95bd2f",
       "status": "pass",
-      "execution_seconds": 0.018280982971191406,
+      "execution_seconds": 0.017116785049438477,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.unique_mart_activation_candidates_customer_sk.6009589423",
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_has_valid_dispatch_context.3726dd3795",
       "status": "pass",
-      "execution_seconds": 0.019690990447998047,
+      "execution_seconds": 0.01890277862548828,
       "query_id": null
     },
     {
-      "unique_id": "test.elio_assessment.relationships_mart_activation_candidates_customer_sk__customer_sk__ref_dim_customer_.773d4cedfe",
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_is_historical_alert.8fc97e8677",
       "status": "pass",
-      "execution_seconds": 0.020900249481201172,
+      "execution_seconds": 0.019287824630737305,
       "query_id": null
     },
     {
       "unique_id": "model.elio_assessment.mart_activation_history",
       "status": "success",
-      "execution_seconds": 0.1148679256439209,
+      "execution_seconds": 0.12207508087158203,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_observed_delivered_by_cutoff.5a94bbada1",
+      "status": "pass",
+      "execution_seconds": 0.021766185760498047,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_delivery_risk_order_id.41450713d7",
+      "status": "pass",
+      "execution_seconds": 0.020820140838623047,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_mart_delivery_risk_order_id__order_id__ref_fct_orders_.5501d6359e",
+      "status": "pass",
+      "execution_seconds": 0.025104045867919922,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.not_null_mart_activation_candidates_customer_sk.ab006fe758",
+      "status": "pass",
+      "execution_seconds": 0.020951271057128906,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_mart_activation_candidates_customer_sk.6009589423",
+      "status": "pass",
+      "execution_seconds": 0.013544082641601562,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.relationships_mart_activation_candidates_customer_sk__customer_sk__ref_dim_customer_.773d4cedfe",
+      "status": "pass",
+      "execution_seconds": 0.021910905838012695,
+      "query_id": null
+    },
+    {
+      "unique_id": "test.elio_assessment.unique_mart_delivery_risk_order_id.4f5d6135aa",
+      "status": "pass",
+      "execution_seconds": 0.028640031814575195,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.not_null_mart_activation_history_customer_sk.871731babb",
       "status": "pass",
-      "execution_seconds": 0.016752958297729492,
+      "execution_seconds": 0.017570018768310547,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.unique_mart_activation_history_customer_sk.e220acd1e1",
       "status": "pass",
-      "execution_seconds": 0.020138025283813477,
+      "execution_seconds": 0.01547694206237793,
       "query_id": null
     },
     {
       "unique_id": "test.elio_assessment.relationships_mart_activation_history_customer_sk__customer_sk__ref_dim_customer_.d146179295",
       "status": "pass",
-      "execution_seconds": 0.021662235260009766,
+      "execution_seconds": 0.01724100112915039,
       "query_id": null
     }
   ]

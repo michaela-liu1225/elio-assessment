@@ -1,0 +1,3 @@
+is_late,orders,reviewed_orders,low_first_reviews,low_latest_reviews,reviews_before_delivery
+False,18622,18525,1665,1665,15
+True,816,801,432,432,505

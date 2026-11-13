@@ -94,3 +94,262 @@ unit_tests:
         - {order_id: invalid_money, order_item_id: 1, price: null, _has_parse_error: true}
         - {order_id: invalid_sequence, order_item_id: null, price: 20, _has_parse_error: true}
         - {order_id: valid, order_item_id: 2, price: 20, _has_parse_error: false}
+  - name: first_review_preserves_order_grain_and_excludes_future_responses
+    model: int_order_reviews
+    given:
+    - input: ref('stg_reviews')
+      rows:
+      - order_id: multi
+        review_id: r2
+        review_score: 5
+        review_created_at: '2018-01-04'
+        review_answered_at: '2018-01-05'
+      - order_id: multi
+        review_id: r1
+        review_score: 1
+        review_created_at: '2018-01-02'
+        review_answered_at: '2018-01-03'
+      - order_id: future
+        review_id: r3
+        review_score: 2
+        review_created_at: '2018-08-31'
+        review_answered_at: '2018-09-01'
+      - order_id: invalid
+        review_id: r4
+        review_score: 2
+        review_created_at: '2018-01-04'
+        review_answered_at: '2018-01-03'
+    expect:
+      rows:
+      - order_id: multi
+        first_review_id: r1
+        first_review_score: 1
+        latest_review_score: 5
+        review_record_count: 2
+  - name: dispatch_trigger_boundaries_missing_inputs_and_snapshot_cancellation
+    model: mart_delivery_risk
+    given:
+    - input: ref('fct_orders')
+      rows:
+      - order_id: later
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: exact_trigger
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-04 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: exact_48h
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-06 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: after_48h
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-06 10:00:01'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: multi_seller
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: missing_deadline
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: missing_seller
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: unapproved
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: null
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: short_lead
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-05'
+        carrier_received_at: '2018-04-05 10:00:00'
+        delivered_at: '2018-04-11 10:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: delivered_before
+        order_status: delivered
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: null
+        delivered_at: '2018-04-04 09:00:00'
+        is_delivered: true
+        is_late: true
+        merchandise_gmv: 10
+      - order_id: canceled_proxy
+        order_status: canceled
+        purchased_at: '2018-04-01 10:00:00'
+        purchase_date: '2018-04-01'
+        approved_at: '2018-04-01 11:00:00'
+        estimated_delivery_date: '2018-04-10'
+        carrier_received_at: null
+        delivered_at: null
+        is_delivered: false
+        is_late: null
+        merchandise_gmv: 10
+      - order_id: no_items
+        purchased_at: '2018-04-01'
+        order_status: processing
+        approved_at: '2018-04-02'
+        estimated_delivery_date: '2018-04-10'
+    - input: ref('stg_order_items')
+      rows:
+      - order_id: later
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: exact_trigger
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: exact_48h
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: after_48h
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: multi_seller
+        seller_id: s2
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: multi_seller
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: missing_deadline
+        seller_id: s1
+        shipping_limit_at: null
+      - order_id: missing_deadline
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: missing_seller
+        seller_id: null
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: missing_seller
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: unapproved
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: short_lead
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: delivered_before
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+      - order_id: canceled_proxy
+        seller_id: s1
+        shipping_limit_at: '2018-04-03 10:00:00'
+    - input: ref('int_order_reviews')
+      rows: []
+    expect:
+      rows:
+      - order_id: later
+        has_valid_dispatch_context: true
+        is_historical_alert: true
+        handed_over_next_48h: true
+      - order_id: exact_trigger
+        has_valid_dispatch_context: true
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: exact_48h
+        has_valid_dispatch_context: true
+        is_historical_alert: true
+        handed_over_next_48h: true
+      - order_id: after_48h
+        has_valid_dispatch_context: true
+        is_historical_alert: true
+        handed_over_next_48h: false
+      - order_id: multi_seller
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: missing_deadline
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: missing_seller
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: unapproved
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: short_lead
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: delivered_before
+        has_valid_dispatch_context: true
+        is_historical_alert: false
+        handed_over_next_48h: null
+      - order_id: canceled_proxy
+        has_valid_dispatch_context: true
+        is_historical_alert: true
+        handed_over_next_48h: false
+      - order_id: no_items
+        has_valid_dispatch_context: false
+        is_historical_alert: false
+        handed_over_next_48h: null
