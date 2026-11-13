@@ -1,0 +1,32 @@
+[
+  {
+    "order_status": "canceled",
+    "proxy_alerts": 48,
+    "assessable_delivered_orders": 0,
+    "handovers_next_48h": 0
+  },
+  {
+    "order_status": "delivered",
+    "proxy_alerts": 566,
+    "assessable_delivered_orders": 563,
+    "handovers_next_48h": 250
+  },
+  {
+    "order_status": "invoiced",
+    "proxy_alerts": 44,
+    "assessable_delivered_orders": 0,
+    "handovers_next_48h": 0
+  },
+  {
+    "order_status": "processing",
+    "proxy_alerts": 14,
+    "assessable_delivered_orders": 0,
+    "handovers_next_48h": 0
+  },
+  {
+    "order_status": "shipped",
+    "proxy_alerts": 7,
+    "assessable_delivered_orders": 0,
+    "handovers_next_48h": 2
+  }
+]

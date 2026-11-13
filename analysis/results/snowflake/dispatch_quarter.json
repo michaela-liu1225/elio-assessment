@@ -1,0 +1,28 @@
+[
+  {
+    "is_historical_alert": false,
+    "orders": 18754,
+    "late_orders": 777,
+    "late_rate": 0.04143116135224485,
+    "reviewed_orders": 18657,
+    "low_first_reviews": 1896,
+    "low_latest_reviews": 1898,
+    "handovers_next_48h": 0,
+    "merchandise_gmv": 2650270.13,
+    "sellers": 1584,
+    "median_promise_lead_days": 17.0
+  },
+  {
+    "is_historical_alert": true,
+    "orders": 563,
+    "late_orders": 174,
+    "late_rate": 0.30905861456483125,
+    "reviewed_orders": 557,
+    "low_first_reviews": 167,
+    "low_latest_reviews": 166,
+    "handovers_next_48h": 249,
+    "merchandise_gmv": 103411.9,
+    "sellers": 237,
+    "median_promise_lead_days": 17.0
+  }
+]

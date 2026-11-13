@@ -1,43 +1,71 @@
 {
   "engine": "snowflake",
-  "executed_at_utc": "2026-11-12T23:45:43.793763+00:00",
-  "sql_sha256": "a6ade80d3354252c4bc77590d083151c09735e70a15bce0c4b2ef42a994e037b",
+  "executed_at_utc": "2026-11-13T00:30:48.129158+00:00",
+  "sql_sha256": "33a0c2ad210a6e02bd0f2a6812cfe21826d9998fb62733cef6089fec673dc3ab",
   "queries": {
     "top_products": {
       "rows": 10,
-      "query_id": "01c85f31-0004-d442-0000-000409629129"
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283ad"
     },
     "monthly_retention": {
       "rows": 18,
-      "query_id": "01c85f31-0004-d5a8-0000-00040962816d"
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283b1"
     },
     "category_retention": {
       "rows": 26,
-      "query_id": "01c85f31-0004-d442-0000-00040962912d"
+      "query_id": "01c85f5e-0004-d442-0000-0004096293f9"
     },
     "retention_overall": {
       "rows": 1,
-      "query_id": "01c85f31-0004-d442-0000-000409629131"
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283b5"
     },
     "activation_baseline": {
       "rows": 1,
-      "query_id": "01c85f31-0004-d5a8-0000-000409628171"
+      "query_id": "01c85f5e-0004-d442-0000-0004096293fd"
     },
     "activation_audience": {
       "rows": 1,
-      "query_id": "01c85f31-0004-d442-0000-000409629135"
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283b9"
     },
     "delivery_and_retention": {
       "rows": 2,
-      "query_id": "01c85f31-0004-d5a8-0000-000409628175"
+      "query_id": "01c85f5e-0004-d442-0000-000409629401"
     },
     "order_quality": {
       "rows": 8,
-      "query_id": "01c85f31-0004-d442-0000-000409629139"
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283bd"
     },
     "monthly_source_coverage": {
       "rows": 25,
-      "query_id": "01c85f31-0004-d5a8-0000-000409628179"
+      "query_id": "01c85f5e-0004-d442-0000-000409629405"
+    },
+    "dispatch_quarter": {
+      "rows": 2,
+      "query_id": "01c85f5e-0004-d442-0000-000409629409"
+    },
+    "dispatch_status": {
+      "rows": 5,
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283c1"
+    },
+    "dispatch_monthly": {
+      "rows": 12,
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283c5"
+    },
+    "delivery_experience": {
+      "rows": 2,
+      "query_id": "01c85f5e-0004-d442-0000-00040962940d"
+    },
+    "activation_quarter": {
+      "rows": 1,
+      "query_id": "01c85f5e-0004-d442-0000-000409629411"
+    },
+    "category_opportunity": {
+      "rows": 5,
+      "query_id": "01c85f5e-0004-d5a8-0000-0004096283c9"
+    },
+    "dispatch_geography": {
+      "rows": 51,
+      "query_id": "01c85f5e-0004-d442-0000-000409629415"
     }
   }
 }

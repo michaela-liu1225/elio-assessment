@@ -1,0 +1,18 @@
+[
+  {
+    "is_late": false,
+    "orders": 18622,
+    "reviewed_orders": 18525,
+    "low_first_reviews": 1665,
+    "low_latest_reviews": 1665,
+    "reviews_before_delivery": 15
+  },
+  {
+    "is_late": true,
+    "orders": 816,
+    "reviewed_orders": 801,
+    "low_first_reviews": 432,
+    "low_latest_reviews": 432,
+    "reviews_before_delivery": 505
+  }
+]

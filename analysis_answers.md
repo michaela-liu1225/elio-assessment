@@ -1,95 +1,107 @@
-# Commercial recommendation: validate second-purchase growth before subsidising it
+# Commercial decision: test dispatch recovery before buying another purchase
 
-**Client lens:** a hypothetical Olist-like marketplace operator. This is a historical decision exercise using anonymised 2016-2018 transactions, not a claim about Olist's current business or Elio's actual clients.
+**Recommendation:** prioritise a small, gated dispatch-exception pilot using existing operations tools. Keep the no-discount repurchase reminder as the fallback; do not launch a broad coupon or category acquisition campaign from this extract.
 
-**Execution status:** the numbers below were reproduced from the dbt marts on **Snowflake**. The cloud build passed all 17 models, 89 data tests and 5 unit tests. All nine analytical query outputs match the independent local validation target. Engine-specific outputs and Snowflake query IDs are in `analysis/results/`; [verification evidence](docs/verification.md) records the executed checks.
+**Client lens:** a hypothetical marketplace operator using Olist's anonymised historical transactions, not Olist's current business. Elio combines data engineering with commercial decisions; its [eZone case study](https://elio.agency/work/ezone) illustrates comparing lifecycle opportunities and investigating operational costs. That informs the questions here; eZone's reported results are not evidence of an achievable Olist uplift.
 
-## B1. Commercial insight
+The pipeline has been executed on **Snowflake**: **20 models, 110 data tests and 7 unit tests** pass. Aggregate SQL results and query IDs are in [the Snowflake outputs](analysis/results/snowflake/); [verification](docs/verification.md) distinguishes executed work from the proposed intervention.
 
-**Finding.** Repeat purchasing is uncommon within the observable window, so a broad coupon campaign has weak support. Among **81,344** customers with a complete 60-day observation window, **832** made a second purchase on a later shopping date: **1.02%** (95% Wilson interval **0.96%-1.09%**). This does not mean the other 98.98% churned: purchases outside these marketplaces, outside the extract, or under another identity are unobserved.
+## Opportunity choice
 
-**Method.** Identify buyers using `customer_unique_id`, aggregate delivered orders on the same calendar day into a shopping occasion, and compare the first and second distinct shopping dates. First observed purchases run from 2017-01-01 through 2018-07-02, allowing 60 full days before the fixed 2018-08-31 cutoff. The monthly chart excludes July's partially mature cohort. Final snapshot status determines eventual delivered purchases; this is descriptive analysis, not a historical causal backtest.
+The comparison uses **2018 Q2 eligibility flows**, not a quarterly logistics population against a one-day CRM backlog. Rankings are judgement about which decision to investigate first, not estimated causal returns.
 
-**Why it matters.** Sending incentives to everyone would pay for some purchases that would happen anyway. The more actionable historical segment is customers who were still waiting for a second shopping occasion 30 days after an on-time first delivery. Among **73,082** such customers with another 30 days of observation, **244** repurchased: **0.334%** (95% interval **0.295%-0.378%**). Their **251** subsequent orders averaged **R$119.41** in merchandise value, excluding freight. These small event counts favour a simple controlled test over elaborate churn prediction or a precise lifetime-value claim.
+| Opportunity | What the data establishes | Decision |
+|---|---|---|
+| **Dispatch-exception recovery** | 679 reconstructed alerts; 563 mature, assessable deliveries; 174 were late. A named operations owner can act before the promise date. | **First, conditional on live event quality and finance validation.** Strong observable risk signal; modest, assumption-sensitive economics. |
+| **Second-purchase reminder** | 18,058 day-30 eligible customers in Q2; 63 naturally repeated in the next 30 days (0.349%). At assumed 50% reach, +0.5 percentage points and 10% contribution, quarterly contribution is R$443 before setup. | **Fallback in an existing CRM.** Positive lift is unproven; consent, reach and contribution are missing. No coupon. |
+| **Category-led merchandising/acquisition** | Watches/gifts and health/beauty each generate about 10.4% of Q2 delivered merchandise GMV. | **Defer spend.** Transaction share does not reveal traffic, conversion, incremental demand, category margin or CAC. Request those inputs first. |
 
-![Repeat purchase by mature cohort](analysis/figures/retention_cohorts_snowflake.png)
+[Detailed comparison, decision reversals and reproducible economics](docs/opportunity_assessment.md). The recommendation can change: at only **R$10** avoidable cost per prevented late delivery, even the 10-point dispatch scenario loses **R$277** after setup. Neither opportunity justifies bespoke engineering at this observed scale.
 
-**Category differences are exploratory.** For example, mixed-category first occasions show 24/888 repeat buyers (2.70%), but basket size, selection and multiple comparisons may explain the difference. I would not target or promise uplift solely from that ranking. The SQL includes denominators and a minimum display sample of 500 customers.
+## B1. Two findings and why they matter
 
-## B2. One concrete action: a capped, no-discount second-purchase reminder test
+**1. Missing handover after the shipping deadline identifies operational risk while time remains to act.** Reconstruct a trigger 24 hours after the earliest item shipping deadline. Require one seller, complete item deadlines/seller IDs, approval by the trigger, valid chronology and at least two calendar days before promised delivery. Across Q2 trigger dates, **174/563** mature, observed deliveries were late (**30.9%; 95% Wilson interval 27.2%-34.8%**), versus **777/18,754 (4.1%)** with a handover already observed. Median remaining promise lead in the alert group was **17 days**.
 
-### Target and mechanic
+The gap persists in each January-June month. Reweighting the comparator to the alert group's destination-state mix gives **4.4%**, so destination mix alone does not explain it. Neither adjustment establishes causality: seller capability, product mix, calendar disruptions and selection can still explain the association. The **26.8-point gap is not a recoverable treatment effect**, and a missing scan does not prove seller fault.
 
-Use the existing CRM to send one reminder featuring the customer's original category, or a generic marketplace link for mixed/unknown categories. No coupon is offered in this first experiment.
+![Dispatch risk and monthly variation](analysis/figures/dispatch_risk_snowflake.png)
 
-Eligible customers must have exactly one observed delivered shopping occasion; its orders arrived on time with known delivery timestamps; delivery was 30-60 days ago; and no subsequent order, including an in-flight order, is present. Recheck eligibility immediately before sending. Production also requires a usable contact, marketing consent, no unresolved complaint/refund, and no overlapping retention campaign; those fields are absent from this dataset and are not assumed to be available.
+**2. Delivery failure coincides with a worse customer experience, but reviews are not financial losses.** In a separate mature Q2 **purchase** cohort, **432/801 (53.9%)** reviewed late deliveries had a 1-2-star first response, versus **1,665/18,525 (9.0%)** on-time deliveries. The latest-response sensitivity gives the same counts. **505** late-order responses preceded actual delivery: this measures experience during the journey, not exclusively post-delivery satisfaction. Respondents can differ from nonrespondents; causality and subsequent customer value are unproven.
 
-`mart_activation_candidates` returns **5,718** illustrative customers at 2018-08-31. This is an audience definition, not an executable contact list. The day-30 historical baseline is only a planning proxy for a 30-60-day backlog: survivors at day 60 may behave differently. Stratify the test by days since delivery (30-44 versus 45-60), and use the concurrent control rather than the historical rate to measure lift.
+The review source has **99,224** review/order pairs, but `review_id` alone is not unique. The pipeline preserves the compound key and selects one first response per order through the cutoff, with latest response retained only for sensitivity. This prevents reviews from multiplying order amounts. Free text stays outside analytical marts.
 
-### Commercial impact and a spending gate
+## B2. One action: a seller-owned dispatch exception pilot
 
-The data supplies candidate count and a historical order-value benchmark. The following inputs are **assumptions**, not estimated treatment effects or known platform economics:
+### Target, owner and workflow
 
-- 50% of candidates can legitimately be reached: **2,859** customers.
-- An incremental converting buyer contributes one additional order worth **R$119.41**; natural repeat buyers may not represent incremental buyers.
-- The platform retains **10% of merchandise GMV as contribution after non-marketing variable costs**. This is not a reported Olist take rate; finance must replace it with actual unit economics.
-- Delivery of the message costs **R$0.02** per treated customer; fixed CRM/setup/creative costs are excluded below and must be added before launch.
+**Owner: Marketplace Operations**, with finance supplying avoidable costs and data engineering supplying event checks.
 
-Illustrative **full-rollout** scenarios for those 2,859 reachable customers, separate from the 50/50 experiment:
+At the trigger described above, confirm the order is currently approved/invoiced/processing, unpaid/canceled/unavailable states are suppressed, and no handover or delivery has actually occurred. Send the seller one existing-channel task to confirm pickup or explain the missing scan. Escalate unresolved cases to the existing operations queue after 24 hours. Do not automatically refund, discount or pay for expedited delivery. An operator checks inventory and carrier status before deciding what to do.
 
-| Absolute increase in 30-day purchase probability | Extra orders | Extra merchandise GMV | Incremental contribution after message cost, before fixed costs |
+The 24-hour grace period is an operational hypothesis, not an optimised threshold. Log seller response, actual pickup and action cost. Persist one task per order/trigger/rule version, assign the seller consistently to a trial arm, and recheck state immediately before any action. Changes to shipping promises must not reset the original deadline silently.
+
+The implementation supplies the order-grain [`mart_delivery_risk`](dbt_project/models/marts/mart_delivery_risk.sql) and a [current-snapshot worklist reference](sql/dispatch_worklist.sql). The latter excludes canceled/completed orders and stale backlog; it is not a deployed notification integration. The historical flag cannot recover cancellation time, event-arrival time or deadline revisions. **679 is a workload proxy, not 679 verified actionable orders.** Of these, **116** lack an assessable delivered outcome; all 679 are nevertheless charged handling cost below.
+
+### Economics: avoided cost, not recovered GMV
+
+Quarterly full-rollout scenarios use three **unverified planning assumptions**: R$30 genuinely avoidable support/credit/carrier cost per prevented late delivery, R$0.50 blended cost per proxy alert, and R$500 one-time setup. Finance must replace them. R$0.50 must include message/API charges and weighted manual handling; it is not a credible allowance for extensive human investigation of every case. Setup must include engineering and operations time.
+
+`Net value = 563 assessable deliveries × absolute late-rate reduction × avoidable cost − 679 alerts × handling cost − setup`.
+
+| Absolute late-rate reduction | Prevented late deliveries | Net before setup | Net after R$500 setup |
 |---|---:|---:|---:|
-| 0 percentage points | 0.0 | R$0 | **-R$57** |
-| 0.25 percentage points | 7.1 | R$853 | **R$28** |
-| 0.50 percentage points | 14.3 | R$1,707 | **R$114** |
-| 1.00 percentage point | 28.6 | R$3,414 | **R$284** |
+| 0 points | 0.0 | -R$340 | **-R$840** |
+| 5 points | 28.2 | R$505 | **R$5** |
+| 10 points | 56.3 | R$1,350 | **R$850** |
 
-Formula: `reachable customers × absolute lift × order value × contribution rate − all message costs − fixed costs`. Without fixed costs, break-even lift is approximately **0.167 percentage points** at the assumed margin. A 0.50-point lift would move purchase probability from about 0.334% to 0.834%, roughly 2.5 times baseline: even that scenario is ambitious, not a forecast.
+These are sensitivities, not forecasts. A 10-point reduction from 30.9% is a substantial **32% relative improvement**. The 5-point case barely breaks even, so the pilot has **no comfortable financial cushion**. At 10 points, avoidable cost must exceed **R$14.91** per prevented late delivery; at 5 points it must exceed **R$29.82**. The observed **R$103,412** GMV of assessable alerts is exposure only and is **not counted as saved revenue**. Do not add speculative LTV or monetise star ratings.
 
-For comparison, if every converting treated customer redeemed a **R$10** coupon, the 0.50-point scenario would lose approximately **R$125 before fixed costs**, because subsidies are paid to natural purchasers as well as incremental purchasers. The coupon comparison assumes full redemption and no extra basket-value effect; it is a sensitivity illustration, not a prediction of coupon behaviour.
+**Spending gate:** first validate current alert quality and unit costs within an existing operations workflow. The R$500 setup ceiling is a proposed learning budget, not an approved spend or demonstrated implementation cost. If the required integrations exceed it, or finance cannot substantiate avoidable costs, do not launch this pilot. Reassess the CRM fallback with its actual reach, margin and setup cost instead.
 
-**Decision:** permit the no-discount pilot only using an existing low-cost CRM workflow and a separately approved learning budget. This extract does not justify bespoke campaign engineering or a large paid promotion. If setup cost alone exceeds roughly R$114, the 0.50-point one-batch rollout scenario does not recover it; a client must justify larger reachable volume, higher contribution, or learning value before proceeding. This spending gate is part of the recommendation, not an omitted cost.
+### Measurement within 16 weeks, with an explicit power limit
 
-### Measurement and timing
+**Weeks 1-2:** shadow the rule without seller contact. Check original deadlines, source-event freshness, cancellation suppression, real eligible volume, seller cluster sizes, handling time and finance costs. Freeze definitions and go/no-go criteria before randomisation.
 
-Randomise eligible customers 50/50, persist assignment at stable customer identity, and suppress crossover or duplicate sends. The control receives no extra retention reminder; ordinary transactional messages continue in both arms. Primary outcome is a delivered second purchase placed within 30 days of assignment; analyse all assigned customers by intention to treat and allow orders to settle before final reporting. Report absolute lift and confidence intervals, incremental contribution per assigned customer using actual finance inputs, and unsubscribe/complaint/refund guardrails. Opens and coupon redemption are not success metrics.
+**Weeks 3-12:** randomise **sellers**, not individual orders, 50/50 to intervention versus business as usual, balancing prior eligible volume and lateness. Persist assignment to limit seller-level spillover. Analyse all eligible assigned orders by intention to treat; never remove an order because it was later canceled. Existing support continues in both arms.
 
-A normal-approximation design using the historical 0.334% rate needs about **3,644 customers per arm** to detect a **0.50 percentage-point** absolute increase with 80% power and a two-sided 5% test. The one-time 2,859 reachable-customer scenario is **underpowered** for that target. Validate baseline and reach first; enrol a rolling audience for up to **12 weeks**, aiming for at least **7,288 reachable eligible customers**, then allow 30 days of follow-up and a predefined delivery-settlement window. Week 6 is an operational check, not a significance-based stopping rule; report the main result around **week 16 plus settlement time**. If enrolment is insufficient, report the trial as inconclusive rather than presenting an absence of significance as proof of no effect. Confirm sample size with an exact/rare-event calculation before launching; the calculation here is for sizing the proposal.
+**Primary pilot endpoint:** carrier-confirmed handover within 48 hours of assignment, reported at week 13 with cluster-aware uncertainty. The all-status historical proxy is **252/679 (37.1%)**. Detecting a **15-point absolute improvement** needs approximately **172 independent orders per arm**, or **430 total** after an assumed 1.25 cluster design effect (80% power, two-sided 5%). Q2 flow implies about **522 proxy alerts over ten weeks**, before live eligibility exclusions. The design effect and eligibility rate must be re-estimated during shadowing; insufficient volume means an inconclusive pilot or a pre-agreed longer study.
 
-## B3. Assumptions, caveats and data quality
+**Week 16:** report on-time fulfilled orders per assigned order, cancellations/refunds, low ratings, seller burden and realised variable cost per assigned order. Cancellations and orders still undelivered at promise +30 days do not count as successful fulfilment; missing event feeds are reported separately, not silently labelled on time. Allow 30 days after the promised date for delivery outcomes and extend follow-up for later promises. A scan alone is insufficient: audit pickup evidence and downstream delivery to detect premature scans. The delivered-only historical baseline suggests roughly **753 assessable orders** to detect a 10-point late-delivery improvement under the same assumed clustering, more than this pilot is likely to provide. This is a sizing warning, not the final power calculation for the all-assigned fulfilment endpoint; re-estimate that baseline during shadowing. **Do not claim that the week-13 process result proves profitable delivery improvement.** Scale only after measured cost benefit and downstream guardrails support it; otherwise extend or stop.
 
-The currency is treated as BRL for this Brazilian dataset. Merchandise GMV, payment amount and freight are separate measures; neither commission, refunds, cost of goods nor profit is observed. Returns after a final delivered status may be absent. The source does not establish a timezone, so its timestamps are preserved without asserting UTC. First observed purchase is left-censored, recent cohorts are right-censored, and final snapshot statuses prevent a perfect point-in-time reconstruction. The tiny September/October 2018 tail is retained for traceability but excluded from behavioural conclusions.
+## B3. Limitations and the three production checks that matter most
 
-Observed source issues are retained visibly: **8** delivered orders have no delivery timestamp; **1** delivered order has no payment record; **299** delivered orders differ by more than R$0.01 between recorded payment and item-plus-freight totals. Across all statuses there are **303** such discrepancies. **610** products lack a category, **2** named categories lack an English translation, and **9** payment records have a zero value. A translation-file UTF-8 BOM is handled at parsing. No malformed CSV record or conflicting business-key payload was found in the six loaded files. These statements are reproduced by the load manifest, source tests and quality queries; none is repaired by inventing values.
+The fixed cutoff is 2018-08-31; delivery cohorts require promised date +30 days by cutoff and actual delivery observed by cutoff. Conditioning on delivered orders can exclude the worst failures, which is why all-status workload and unknown outcomes are separate. The static extract cannot establish what data was available at each historical trigger. Timestamps have no established timezone. BRL is assumed; GMV, freight charged, payments and profit are different quantities. Refunds, compensation, carrier cost, support tickets, consent and contactability are absent. These limits prevent a confident ROI forecast.
 
-Top three production checks:
+The original repeat analysis remains available: **832/81,344 (1.02%)** mature buyers returned on a later shopping date within 60 days. Low observed repeat purchasing alone is not proof of churn or the highest-value intervention.
 
-1. **Identity and relationship integrity:** non-null/unique customer, order and compound item/payment keys; no conflicting same-key payloads; no orphan joins. Fail publication if these break.
-2. **Grain and financial conservation:** reconcile source-to-mart order/item counts and additive amounts. Retain and monitor payment discrepancies separately; missing payment is not zero. Alert on a change in the exception rate rather than forcing historical differences to disappear.
-3. **Batch completeness and temporal validity:** validate schema, UTF-8, expected file/row counts, parse failures and order/delivery chronology. On a live feed, alert on missing scheduled batches and source update delay. For this static archive, comparing its 2018 purchase dates with today's date would be an invalid freshness alarm; `_loaded_at` measures arrival, not source recency.
+Top three production controls:
+
+1. **Operational time and state:** monitor event arrival lag, invalid chronology, original versus revised deadlines and missing seller/parcel links; suppress stale, canceled and already-dispatched tasks and alert the operations owner on feed failures.
+2. **Grain and completeness:** enforce order/item/payment/review compound keys, relationships, conflicting-payload failures and order/GMV conservation. Never multiply facts through multi-review or multi-payment joins; quarantine unreliable dispatch context.
+3. **Outcome and money reconciliation:** retain unmatched payments, missing deliveries, cancellations and unreviewed orders; reconcile credits/refunds/support/carrier costs with finance. Track observation-window maturity and denominator losses by trial arm.
+
+Observed exceptions remain visible: 8 delivered orders lack delivery timestamps, 1 lacks a payment record, and 299 have payment discrepancies above R$0.01; 610 products lack categories and 2 named categories lack English translation. Passing tests validate stated contracts, not complete business truth. [Quality evidence](docs/verification.md).
 
 ## B4. Client memo (under 200 words)
 
-> To: CFO / COO
->
-> Subject: Test repeat-purchase growth before funding discounts
->
-> The project organises six raw commerce files into traceable Snowflake loading and tested dbt customer, product and order tables. Snowflake and local validation runs both pass, with matching analytical outputs.
->
-> Only 1.02% of customers with a complete 60-day observation window made a second purchase on a later shopping date. This measures observed marketplace activity, not total customer loyalty. Missing payment and delivery records remain visible rather than being disguised as zero.
->
-> I recommend a controlled, no-discount reminder test using the existing CRM, after confirming contactability, consent and actual contribution margins. The historical audience contains 5,718 candidates. Assuming half are reachable, a 0.50 percentage-point lift would add roughly R$1,707 in merchandise value but only R$114 in contribution after message costs and before setup costs. That is a scenario, not a forecast.
->
-> This supports a tightly capped learning exercise, not bespoke campaign development. Use a concurrent holdout, accumulate sufficient eligible customers, and scale only if measured incremental contribution covers all costs. Broad coupons are not justified by the available evidence.
+**To: COO and CFO**
 
-## B5. Optional LLM use case
+**Subject: Validate dispatch recovery before funding another-purchase incentives**
 
-Use a governed question-answering layer over the documented marts. Example: **"How many eligible customers can we target, and what assumptions would make a reminder profitable?"** Retrieve only the approved audience aggregate, historical baseline, finance-provided unit economics and their definitions; return a short summary with executed-query references and an explicit assumptions table. The main risk is inventing revenue or treating scenarios as proven uplift. Mitigate it with allowlisted read-only queries, semantic definitions distinguishing GMV from contribution, required source links, and human review before any business action; an LLM must not send campaigns or alter audiences on its own.
+I recommend a tightly capped dispatch-exception pilot using existing operations tools.
 
-## Reproduction and sources
+In the historical Q2 trigger cohort, 174 of 563 assessable deliveries with no handover 24 hours after their shipping deadline arrived late: 30.9%, versus 4.1% where handover was already observed. This identifies risk; it does not establish the effect of intervening. There were 679 proxy alerts across all statuses, including 116 without an assessable delivered outcome.
 
-- `sql/analytics_queries.sql`: named queries against marts; the top-products, monthly-cohort and category queries satisfy A5 categories 1, 2 and 4.
-- `scripts/run_analysis.py`: produces engine-labelled JSON/CSV results and, on Snowflake, query IDs.
-- `scripts/summarise_results.py`: reproduces Wilson intervals, scenario arithmetic, approximate sample size and the cohort chart.
-- [Olist publisher data card](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce): dataset scope and customer identity semantics.
-- [Elio](https://www.elio.agency/): data foundations connected to measurable acquisition, conversion, retention and efficiency.
+Operations would confirm pickup with the seller, then escalate unresolved cases. Finance must first validate avoidable support, credit and carrier costs. Assuming R$30 per prevented late delivery, R$0.50 per alert and R$500 setup, a ten-point reduction yields about R$850 quarterly net value; five points barely breaks even. These are scenarios, not promised savings.
+
+Use two weeks of shadowing and ten weeks of seller-randomised testing. Read out 48-hour handover at week 13, then matured delivery, cancellations and cost outcomes around week 16. Faster scans alone are insufficient to scale.
+
+Retain a no-discount CRM reminder as the fallback. Defer category acquisition spend until exposure, margin and acquisition-cost data exist. Stop if eligibility, costs or sample size invalidate the pilot.
+
+## B5. Optional governed LLM use
+
+Use an LLM to draft an internal operations summary from approved aggregate metrics, not to predict fault or contact sellers autonomously. Retrieve the semantic definitions, alert counts by state, response coverage, actual finance-approved cost inputs and source query IDs. Do not supply review comments, contact details or individual orders.
+
+**Example prompt:** “Using only these validated aggregates and metric definitions, summarise the dispatch-risk trend for the COO. Separate observations, assumptions and missing inputs; cite query IDs. Explain that review timing may precede delivery and that a risk association is not intervention lift. If a financial input is missing, state that net benefit is unknown. Return observation, uncertainty and next decision.”
+
+**Expected output:** a cited, short briefing with denominators and explicit unknowns, reviewed by the operations owner. Enforce read-only allowlisted queries, prohibit invented costs or causal claims, treat any retrieved text as untrusted, log source versions, and check numbers deterministically. No agent or production integration is implemented.

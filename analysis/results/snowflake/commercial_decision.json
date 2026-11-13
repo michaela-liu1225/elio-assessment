@@ -1,0 +1,172 @@
+{
+  "engine": "snowflake",
+  "flow_window": [
+    "2018-04-01",
+    "2018-06-30"
+  ],
+  "dispatch_delivered_baseline": {
+    "is_historical_alert": true,
+    "orders": 563,
+    "late_orders": 174,
+    "late_rate": 0.30905861456483125,
+    "reviewed_orders": 557,
+    "low_first_reviews": 167,
+    "low_latest_reviews": 166,
+    "handovers_next_48h": 249,
+    "merchandise_gmv": 103411.9,
+    "sellers": 237,
+    "median_promise_lead_days": 17.0
+  },
+  "dispatch_comparator": {
+    "is_historical_alert": false,
+    "orders": 18754,
+    "late_orders": 777,
+    "late_rate": 0.04143116135224485,
+    "reviewed_orders": 18657,
+    "low_first_reviews": 1896,
+    "low_latest_reviews": 1898,
+    "handovers_next_48h": 0,
+    "merchandise_gmv": 2650270.13,
+    "sellers": 1584,
+    "median_promise_lead_days": 17.0
+  },
+  "late_rate_95pct_wilson": [
+    0.27228840579171226,
+    0.3484169199994788
+  ],
+  "all_status_proxy_workload": 679,
+  "unassessable_or_not_delivered_proxy_alerts": 116,
+  "dispatch_48h_planning_rate_all_statuses": 0.3711340206185567,
+  "state_standardised_comparator": {
+    "states": 24,
+    "common_alert_orders": 563,
+    "rate": 0.0436928827673785,
+    "causal": false
+  },
+  "assumptions": {
+    "avoidable_cost_per_prevented_late_delivery_brl": 30,
+    "cost_per_proxy_alert_brl": 0.5,
+    "one_time_setup_budget_brl": 500,
+    "dispatch_absolute_reductions": [
+      0,
+      0.05,
+      0.1
+    ],
+    "crm_reachable_share": 0.5,
+    "crm_contribution_rate": 0.1,
+    "crm_message_cost_brl": 0.02,
+    "warning": "All financial inputs and treatment effects are assumptions, not observed results."
+  },
+  "dispatch_scenarios": [
+    {
+      "absolute_late_rate_reduction": 0,
+      "avoided_late_deliveries": 0,
+      "gross_avoidable_cost_brl": 0,
+      "all_proxy_alert_handling_cost_brl": 339.5,
+      "net_before_setup_brl": -339.5,
+      "net_after_setup_brl": -839.5
+    },
+    {
+      "absolute_late_rate_reduction": 0.05,
+      "avoided_late_deliveries": 28.150000000000002,
+      "gross_avoidable_cost_brl": 844.5000000000001,
+      "all_proxy_alert_handling_cost_brl": 339.5,
+      "net_before_setup_brl": 505.0000000000001,
+      "net_after_setup_brl": 5.000000000000114
+    },
+    {
+      "absolute_late_rate_reduction": 0.1,
+      "avoided_late_deliveries": 56.300000000000004,
+      "gross_avoidable_cost_brl": 1689.0000000000002,
+      "all_proxy_alert_handling_cost_brl": 339.5,
+      "net_before_setup_brl": 1349.5000000000002,
+      "net_after_setup_brl": 849.5000000000002
+    }
+  ],
+  "crm_quarter_baseline": {
+    "eligible_customers": 18058,
+    "repeat_customers": 63,
+    "repeat_rate": 0.0034887584450105217,
+    "subsequent_orders": 67,
+    "subsequent_gmv": 9248.08,
+    "subsequent_order_aov": 138.03104478
+  },
+  "crm_reachable_customers": 9029,
+  "crm_scenarios": [
+    {
+      "absolute_purchase_probability_lift": 0,
+      "incremental_orders": 0,
+      "incremental_gmv_brl": 0.0,
+      "net_before_setup_brl": -180.58,
+      "net_after_setup_brl": -680.58
+    },
+    {
+      "absolute_purchase_probability_lift": 0.0025,
+      "incremental_orders": 22.5725,
+      "incremental_gmv_brl": 3115.7057582965504,
+      "net_before_setup_brl": 130.99057582965506,
+      "net_after_setup_brl": -369.0094241703449
+    },
+    {
+      "absolute_purchase_probability_lift": 0.005,
+      "incremental_orders": 45.145,
+      "incremental_gmv_brl": 6231.411516593101,
+      "net_before_setup_brl": 442.5611516593101,
+      "net_after_setup_brl": -57.4388483406899
+    },
+    {
+      "absolute_purchase_probability_lift": 0.01,
+      "incremental_orders": 90.29,
+      "incremental_gmv_brl": 12462.823033186201,
+      "net_before_setup_brl": 1065.7023033186204,
+      "net_after_setup_brl": 565.7023033186204
+    }
+  ],
+  "break_even_avoidable_cost_at_10pp_brl": 14.911190053285967,
+  "break_even_avoidable_cost_at_5pp_brl": 29.822380106571934,
+  "break_even_absolute_reduction_at_brl30": 0.04970396684428656,
+  "dispatch_cost_to_equal_crm_0_5pp_scenario_brl": 13.89096184119556,
+  "sample_size": {
+    "alpha_two_sided": 0.05,
+    "power": 0.8,
+    "assumed_cluster_design_effect": 1.25,
+    "dispatch_48h_15pp_per_arm_independent": 172,
+    "dispatch_48h_15pp_total_with_design_effect": 430,
+    "late_10pp_per_arm_independent": 301,
+    "late_10pp_total_with_design_effect": 753,
+    "expected_proxy_alerts_over_10_weeks": 522.3076923076924,
+    "warning": "Normal approximation and assumed design effect; validate actual eligibility, ICC and cluster sizes before randomisation."
+  },
+  "cost_sensitivity_after_setup": [
+    {
+      "avoidable_cost_brl": 10,
+      "absolute_reduction": 0.05,
+      "net_brl": -558.0
+    },
+    {
+      "avoidable_cost_brl": 10,
+      "absolute_reduction": 0.1,
+      "net_brl": -276.5
+    },
+    {
+      "avoidable_cost_brl": 30,
+      "absolute_reduction": 0.05,
+      "net_brl": 5.000000000000114
+    },
+    {
+      "avoidable_cost_brl": 30,
+      "absolute_reduction": 0.1,
+      "net_brl": 849.5000000000002
+    },
+    {
+      "avoidable_cost_brl": 50,
+      "absolute_reduction": 0.05,
+      "net_brl": 568.0
+    },
+    {
+      "avoidable_cost_brl": 50,
+      "absolute_reduction": 0.1,
+      "net_brl": 1975.5
+    }
+  ]
+}
