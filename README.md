@@ -133,7 +133,7 @@ scripts/                   SQL execution and scenario/plot calculations
 profiles.yml.example        environment-based configuration without secrets
 ```
 
-History separates setup, ingestion, models, analysis and validation. [Implementation PR #1](https://github.com/michaela-liu1225/elio-assessment/pull/1) established the pipeline; the commercial refinement uses `codex/commercial-prioritisation` and a separate PR to `main`. The original confidential assessment PDF is not committed. Raw files, environments, credentials, profiles, compiled dbt artifacts and logs are ignored.
+History separates setup, ingestion, models, analysis and validation. [Implementation PR #1](https://github.com/michaela-liu1225/elio-assessment/pull/1) established the pipeline; [commercial PR #2](https://github.com/michaela-liu1225/elio-assessment/pull/2) uses `codex/commercial-prioritisation` to update `main`. The original confidential assessment PDF is not committed. Raw files, environments, credentials, profiles, compiled dbt artifacts and logs are ignored.
 
 ## Scope and next steps
 

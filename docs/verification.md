@@ -56,5 +56,5 @@ This is one verified development run against a static public extract, not a depl
 | B1-B4 insight, action, economics, measurement, caveats and memo | `analysis_answers.md`, `docs/opportunity_assessment.md`, executable calculations and charts |
 | Optional B5 and productionisation discussion | Governed LLM proposal in B5; [Part C discussion](productionisation.md) |
 | Pinned dependencies, credential example and reproducibility | Requirements/lock files, `profiles.yml.example`, README |
-| Small commits and a feature PR to main | Repository history and [assessment PR #1](https://github.com/michaela-liu1225/elio-assessment/pull/1) |
+| Small commits and a feature PR to main | Repository history, [implementation PR #1](https://github.com/michaela-liu1225/elio-assessment/pull/1), and [commercial PR #2](https://github.com/michaela-liu1225/elio-assessment/pull/2) |
 | Live explanation and extension preparation | [Walkthrough](live_walkthrough.md) |
