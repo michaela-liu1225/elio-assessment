@@ -139,10 +139,5 @@ History separates setup, ingestion, models, analysis and validation. [Implementa
 
 Streamlit, predictive LTV and an LLM implementation are omitted so the mandatory pipeline and commercial recommendation remain explainable. Production priorities are current dispatch/cancellation/deadline events, finance-confirmed avoidable costs, an existing operations queue, least-privilege roles, isolated PR schemas and orchestration. CRM contact/consent inputs remain necessary for the fallback. See [Part C discussion](docs/productionisation.md).
 
-## Learning and AI assistance
-
-The main ramp-up areas in this exercise were Snowflake's trial and Google/OIDC authentication setup, dbt's model/test conventions, and adapter-specific timestamp and NULL behaviour. The workflow followed official [Snowflake authentication guidance](https://docs.snowflake.com/en/user-guide/oauth-local-applications) and [dbt unit-test documentation](https://docs.getdbt.com/docs/build/unit-tests), then small executable checks: connect with the actual Snowflake username, load original files with provenance, test representative boundaries, run the full cloud build, and compare aggregate results across engines. The concrete lessons were to distinguish an email login alias from the warehouse username, reject fractional integer identifiers explicitly, and validate boundary behaviour on the actual Snowflake adapter.
-
-AI assistance was used for implementation, drafting and edge-case review, as permitted by the brief. The repository records the resulting code and execution evidence transparently. Use [the live walkthrough](docs/live_walkthrough.md) to rehearse explaining the joins, temporal limits, opportunity choice and a small extension. No campaign has run and no measured treatment effect is claimed.
 
 Data attribution: **Olist Brazilian E-Commerce Public Dataset**, published by Olist on Kaggle, **CC BY-NC-SA 4.0**. This repository contains aggregate educational analysis and download instructions, not a redistributed data archive.
